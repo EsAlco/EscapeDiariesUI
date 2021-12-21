@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EBC34FD227722C060064E4E0 /* DetailViewEscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */; };
 		EBD04227276ABFA900DFCC40 /* EscapeDiariesUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD04226276ABFA900DFCC40 /* EscapeDiariesUIApp.swift */; };
 		EBD04229276ABFA900DFCC40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD04228276ABFA900DFCC40 /* ContentView.swift */; };
 		EBD0422B276ABFAA00DFCC40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBD0422A276ABFAA00DFCC40 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewEscapeRoom.swift; sourceTree = "<group>"; };
 		EBD04223276ABFA900DFCC40 /* EscapeDiariesUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EscapeDiariesUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD04226276ABFA900DFCC40 /* EscapeDiariesUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeDiariesUIApp.swift; sourceTree = "<group>"; };
 		EBD04228276ABFA900DFCC40 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				EBD04226276ABFA900DFCC40 /* EscapeDiariesUIApp.swift */,
 				EBD04228276ABFA900DFCC40 /* ContentView.swift */,
+				EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */,
 				EBD0422A276ABFAA00DFCC40 /* Assets.xcassets */,
 				EBD0422C276ABFAA00DFCC40 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				EBD04229276ABFA900DFCC40 /* ContentView.swift in Sources */,
 				EBD04227276ABFA900DFCC40 /* EscapeDiariesUIApp.swift in Sources */,
+				EBC34FD227722C060064E4E0 /* DetailViewEscapeRoom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
