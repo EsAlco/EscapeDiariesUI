@@ -13,8 +13,12 @@ struct DetailViewEscapeRoom: View {
     
     var body: some View {
         VStack{
-            Image(escapeRooms.image)
             Text(escapeRooms.name)
+                .padding()
+                .font(.system(.title, design: .rounded))
+
+            Image(escapeRooms.image)
+            Spacer()
         }
     }
 }

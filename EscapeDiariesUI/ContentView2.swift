@@ -12,25 +12,27 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var escapeRooms = [
+    @State private var escapeRooms = [
         EscapeRoom(name: "La Nevera", image: "DaleAlCoco"),
         EscapeRoom(name: "El Bunker", image: "FoxInABox"),
-        EscapeRoom(name: "Tras el espejo", image: "TheRomboCode")
+        EscapeRoom(name: "Tras el espejo", image: "TheRomboCode", past: true)
     ]
     
     var body: some View {
+        
         NavigationView{
             List(escapeRooms.indices){ idx in
                 NavigationLink(destination: DetailViewEscapeRoom(escapeRooms: self.escapeRooms[idx])){
-                    if idx < 2 {
+                    if self.escapeRooms[idx].past {
                         EscapeRoomPast(escapeRoom: self.escapeRooms[idx])
                     }else{
                         EscapeRoomNoPast(escapeRoom: self.escapeRooms[idx])
                     }
                 }
             }
-            
+
             .navigationBarTitle("Salas de Escape")
+
         }
     }
 }
@@ -44,6 +46,7 @@ struct EscapeRoom: Identifiable{
     var id = UUID()
     var name: String
     var image: String
+    var past = false
 }
 
 struct EscapeRoomPast: View{
@@ -67,7 +70,7 @@ struct EscapeRoomNoPast: View{
     var body: some View{
         HStack{
             Image(escapeRoom.image)
-                .resizable()
+               .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 60, height: 60)
                 .clipped()
