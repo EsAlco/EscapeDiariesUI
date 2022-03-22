@@ -14,6 +14,7 @@ struct ContentView: View {
     
     @State private var selectedEscape: EscapeRoom?
     
+    
     var body: some View {
         
         NavigationView{
@@ -66,7 +67,34 @@ struct ContentView: View {
                 .sheet(item: self.$selectedEscape){ escapeRooms in
                     DetailViewEscapeRoom(escapeRooms: escapeRooms)
                 }
-                
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarTrailing){
+                        
+                        NavigationLink(destination:FiltersView()){
+                                Image(systemName: "slider.horizontal.3")
+                                    .foregroundColor(.pink)
+                        }
+                        
+                        Button{
+                            //Añadir celdas
+                        }label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(.pink)
+                        }
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarLeading){
+                        Button {
+                            self.showFilterView.toggle()
+                        } label: {
+                            Image(systemName: "gear")
+                                .foregroundColor(.pink)
+                        }
+
+                    }
+                    
+                }
+
             }
         }
     }

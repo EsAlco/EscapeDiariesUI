@@ -17,41 +17,37 @@ struct DetailViewEscapeRoom: View {
     
     var body: some View {
         NavigationView{
-            VStack{
-                Text(escapeRooms.name)
-                    .padding()
-                    .font(.system(.title, design: .rounded))
-
-                Image(escapeRooms.image)
-                
-                DescriptionEscapeRoomView()
-                
-                ValuationEscapeRoomView()
-                    .padding(.top)
-                
-
-                Spacer()
-            }
-       //     .edgesIgnoringSafeArea(.top)
-            
-            .overlay(
+            ScrollView{
                 VStack{
-                    HStack{
-                        Spacer()
-                        Button (action: {
-                            self.presentationMode.wrappedValue.dismiss()
-                        }, label: {
-                            Image(systemName: "xmark")
-                                .font(.headline)
-                                .foregroundColor(.black)
-                        })
-                        .padding(.leading, 20)
+
+                    Image(escapeRooms.image)
                     
-                    }
-                    .frame(width: 300)
+                    DescriptionEscapeRoomView()
+                    
+                    ValuationEscapeRoomView()
+                        .padding(.top)
+                    
+
                     Spacer()
                 }
-            )
+                .padding(.top)
+                
+
+            }
+            .navigationTitle(escapeRooms.name)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button (action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .font(.headline)
+                            .foregroundColor(.black)
+                    })
+                }
+            }
+            
+            
         }
 
     }
@@ -100,6 +96,8 @@ struct ValuationEscapeRoomView: View {
                 Text("Valoraciones:")
                     .font(.system(size: 17, weight: .black, design: .rounded))
                 Spacer()
+                Text("\(AverageRating()) / 5")
+                    .foregroundColor(.pink)
             }.padding(.horizontal)
             HStack{
                 Text("Dificultdad:")
@@ -125,5 +123,11 @@ struct ValuationEscapeRoomView: View {
                 RatingView(selected: $selectedGameMaster)
             }.padding(.horizontal, 30)
         }
+    }
+    
+    func AverageRating() -> String{
+        let sumRating = selectedDifficulty + selectedLineal + selectedRecreation + selectedGameMaster
+        let averageRating =  (Double(sumRating) + 4.0) / 4.0
+        return String(format: "%.2f", averageRating)
     }
 }

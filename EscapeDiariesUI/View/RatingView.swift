@@ -14,8 +14,8 @@ struct RatingView: View {
     var body: some View {
         HStack{
             ForEach(0..<5){ i in
-                Image(systemName: "star.fill")
-                    .foregroundColor(self.selected >= i ? .yellow : .gray)
+                Image(systemName: self.selected >= i ? "star.fill" : "star")
+                    .foregroundColor(.yellow)
                     .onTapGesture {
                         self.selected = i
                     }
