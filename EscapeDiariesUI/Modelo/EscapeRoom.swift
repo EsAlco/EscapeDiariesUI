@@ -11,5 +11,7 @@ struct EscapeRoom: Identifiable{
     var id = UUID()
     var name: String
     var image: String
+    var calification: Double
     var past = false
+    var featured = false
 }

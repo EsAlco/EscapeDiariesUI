@@ -12,34 +12,84 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State var selectedEscape: EscapeRoom?
-    
-
+    @State private var selectedEscape: EscapeRoom?
     
     var body: some View {
         
         NavigationView{
             
             VStack {
-                List(EscapeRoomFactory.escapeRooms){ EscapeRoom in
-                   EscapeRoomPast(escapeRoom: EscapeRoom)
-                       .onTapGesture {
-                           self.selectedEscape = EscapeRoom
-                       }
-                        /*if self.escapeRooms[idx].past {
-                            EscapeRoomPast(escapeRoom: self.escapeRooms[idx])
-                        }else{
-                            EscapeRoomNoPast(escapeRoom: self.escapeRooms[idx])
-                        }*/
-                    
-                }.sheet(item: self.$selectedEscape){ escapeRooms in
-                    DetailViewEscapeRoom(escapeRooms: escapeRooms)
+                List{
+                    ForEach(EscapeRoomFactory.escapeRooms){ EscapeRoom in
+                        ZStack{
+                            EscapeRoomPast(escapeRoom: EscapeRoom)
+                            
+                                .contextMenu{
+                                    Button {
+                                        self.setFeatured(item: EscapeRoom)
+                                    } label: {
+                                        HStack{
+                                            Text("Destacar")
+                                            Image(systemName: "star")
+                                        }
+                                    }
+
+                                    Button {
+                                        self.setPast(item: EscapeRoom)
+                                    } label: {
+                                        HStack{
+                                            Text("Pasado")
+                                            Image(systemName: "checkmark.circle")
+                                        }
+                                    }
+
+                                    Button {
+                                        self.delete(item: EscapeRoom)
+                                    } label: {
+                                        HStack{
+                                            Text("Eliminar")
+                                            Image(systemName: "trsh")
+                                        }
+                                    }
+                                }
+                                .onTapGesture {
+                                    self.selectedEscape = EscapeRoom
+                                }
+                           }
+                    }
+                    .onDelete{ (indexSet) in
+                        EscapeRoomFactory.escapeRooms.remove(atOffsets: indexSet)
+                    }
                 }
                 .navigationBarTitle("Salas de Escape")
+                
+                .sheet(item: self.$selectedEscape){ escapeRooms in
+                    DetailViewEscapeRoom(escapeRooms: escapeRooms)
+                }
                 
             }
         }
     }
+    
+    private func setFeatured(item escapeRoom: EscapeRoom){
+        if let idx = EscapeRoomFactory.escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
+            EscapeRoomFactory.escapeRooms[idx].featured.toggle()
+        }
+    }
+
+    private func setPast(item escapeRoom: EscapeRoom){
+        if let idx = EscapeRoomFactory.escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
+            EscapeRoomFactory.escapeRooms[idx].past.toggle()
+        }
+    }
+
+    private func delete(item escapeRoom: EscapeRoom){
+        if let idx = EscapeRoomFactory.escapeRooms.firstIndex(where: {
+            $0.id == escapeRoom.id}){
+            EscapeRoomFactory.escapeRooms.remove(at: idx)
+        }
+    }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -49,7 +99,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 struct EscapeRoomPast: View{
+    
     var escapeRoom: EscapeRoom
+    
     var body: some View{
         HStack{
             Image(escapeRoom.image)
@@ -58,25 +110,29 @@ struct EscapeRoomPast: View{
                 .frame(width: 60, height: 60)
                 .clipped()
                 .cornerRadius(30)
-            Text(escapeRoom.name)
-                .font(.system(.callout, design: .rounded))
+
+            HStack{
+                Text(escapeRoom.name)
+                    .font(.system(.callout, design: .rounded))
+                Text(String(escapeRoom.calification))
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
+            }
+            Spacer().layoutPriority(-10)
+            
+            //definimos los bool
+            
+            if escapeRoom.featured{
+                Image(systemName: "star.fill")
+                    .foregroundColor(.yellow)
+            }
+            Spacer()
+            
+            if escapeRoom.past{
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.green)
+            }
         }
     }
 }
 
-struct EscapeRoomNoPast: View{
-    var escapeRoom: EscapeRoom
-    var body: some View{
-        HStack{
-            Image(escapeRoom.image)
-               .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 60, height: 60)
-                .clipped()
-                .cornerRadius(30)
-            Text(escapeRoom.name)
-                .font(.system(.callout, design: .rounded))
-                .foregroundColor(Color.red)
-        }
-    }
-}

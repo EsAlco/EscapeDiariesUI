@@ -12,8 +12,8 @@ struct EscapeRoomFactory{
     
     static var escapeRooms = [
         
-        EscapeRoom(name: "La Nevera", image: "DaleAlCoco"),
-        EscapeRoom(name: "El Bunker", image: "FoxInABox", past: true),
-        EscapeRoom(name: "Tras el espejo", image: "TheRomboCode")
+        EscapeRoom(name: "La Nevera", image: "DaleAlCoco",calification: 6.5, past: true, featured: false),
+        EscapeRoom(name: "El Bunker", image: "FoxInABox", calification: 8.7, past: true, featured: true),
+        EscapeRoom(name: "Tras el espejo", image: "TheRomboCode", calification: 0.0, past: false, featured: false)
     ]
 }

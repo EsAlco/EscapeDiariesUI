@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB67D2CA2790E4EB00D70158 /* FactoryEscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2C92790E4EB00D70158 /* FactoryEscapeRoom.swift */; };
 		EB67D2CC2790E51600D70158 /* EscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2CB2790E51600D70158 /* EscapeRoom.swift */; };
+		EBB285CF27E9F41700D1241D /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB285CE27E9F41700D1241D /* RatingView.swift */; };
 		EBC34FD227722C060064E4E0 /* DetailViewEscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */; };
 		EBD04227276ABFA900DFCC40 /* EscapeDiariesUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD04226276ABFA900DFCC40 /* EscapeDiariesUIApp.swift */; };
 		EBD04229276ABFA900DFCC40 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD04228276ABFA900DFCC40 /* ContentView.swift */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		EB67D2C92790E4EB00D70158 /* FactoryEscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FactoryEscapeRoom.swift; sourceTree = "<group>"; };
 		EB67D2CB2790E51600D70158 /* EscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoom.swift; sourceTree = "<group>"; };
+		EBB285CE27E9F41700D1241D /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewEscapeRoom.swift; sourceTree = "<group>"; };
 		EBD04223276ABFA900DFCC40 /* EscapeDiariesUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EscapeDiariesUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBD04226276ABFA900DFCC40 /* EscapeDiariesUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeDiariesUIApp.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			children = (
 				EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */,
 				EBD04228276ABFA900DFCC40 /* ContentView.swift */,
+				EBB285CE27E9F41700D1241D /* RatingView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				EB67D2CC2790E51600D70158 /* EscapeRoom.swift in Sources */,
 				EB67D2CA2790E4EB00D70158 /* FactoryEscapeRoom.swift in Sources */,
 				EBD04229276ABFA900DFCC40 /* ContentView.swift in Sources */,
+				EBB285CF27E9F41700D1241D /* RatingView.swift in Sources */,
 				EBD04227276ABFA900DFCC40 /* EscapeDiariesUIApp.swift in Sources */,
 				EBC34FD227722C060064E4E0 /* DetailViewEscapeRoom.swift in Sources */,
 			);
