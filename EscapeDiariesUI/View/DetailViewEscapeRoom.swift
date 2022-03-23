@@ -11,7 +11,14 @@ struct DetailViewEscapeRoom: View {
     
     @Environment (\.presentationMode) var presentationMode
     
+    @State private var descriptionScapeRoom = ""
     
+    @State var selectedDifficulty: Int = -1
+    @State var selectedLineal: Int = -1
+    @State var selectedRecreation: Int = -1
+    @State var selectedGameMaster: Int = -1
+    
+    var settings: DetailFactory
     
     var escapeRooms: EscapeRoom
     
@@ -22,12 +29,11 @@ struct DetailViewEscapeRoom: View {
 
                     Image(escapeRooms.image)
                     
-                    DescriptionEscapeRoomView()
+                    DescriptionEscapeRoomView(descriptionScapeRoom: $descriptionScapeRoom)
                     
-                    ValuationEscapeRoomView()
+                    ValuationEscapeRoomView(selectedDifficulty: $selectedDifficulty, selectedLineal: $selectedLineal, selectedRecreation: $selectedRecreation, selectedGameMaster: $selectedGameMaster)
                         .padding(.top)
                     
-
                     Spacer()
                 }
                 .padding(.top)
@@ -38,6 +44,13 @@ struct DetailViewEscapeRoom: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button (action: {
+                        self.settings.description = self.descriptionScapeRoom
+                        
+                        self.settings.dificulty = self.selectedDifficulty
+                        self.settings.lineal = self.selectedLineal
+                        self.settings.recreation = self.selectedRecreation
+                        self.settings.gameMaster = self.selectedGameMaster
+                        
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(systemName: "xmark")
@@ -46,8 +59,14 @@ struct DetailViewEscapeRoom: View {
                     })
                 }
             }
-            
-            
+            .onAppear{
+                self.descriptionScapeRoom = self.settings.description
+                
+                self.selectedDifficulty = self.settings.dificulty
+                self.selectedLineal = self.settings.lineal
+                self.selectedRecreation = self.settings.recreation
+                self.selectedGameMaster = self.settings.gameMaster
+            }
         }
 
     }
@@ -55,13 +74,13 @@ struct DetailViewEscapeRoom: View {
 
 struct DetailViewEscapeRoom_Previews: PreviewProvider {
     static var previews: some View {
-        DetailViewEscapeRoom(escapeRooms: EscapeRoom(name:"La Nevera", image: "DaleAlCoco", calification: 5.5, past: true, featured: false))
+        DetailViewEscapeRoom(settings: DetailFactory(), escapeRooms: EscapeRoom(name:"La Nevera", image: "DaleAlCoco", calification: 5.5, past: true, featured: false))
     }
 }
 
 struct DescriptionEscapeRoomView: View {
     
-    @State private var descriptionScapeRoom = ""
+    @Binding var descriptionScapeRoom: String
     
     var body: some View {
         VStack{
@@ -85,10 +104,11 @@ struct DescriptionEscapeRoomView: View {
 }
 
 struct ValuationEscapeRoomView: View {
-    @State var selectedDifficulty = -1
-    @State var selectedLineal = -1
-    @State var selectedRecreation = -1
-    @State var selectedGameMaster = -1
+    
+    @Binding var selectedDifficulty: Int
+    @Binding var selectedLineal: Int
+    @Binding var selectedRecreation: Int
+    @Binding var selectedGameMaster: Int
     
     var body: some View {
         VStack{

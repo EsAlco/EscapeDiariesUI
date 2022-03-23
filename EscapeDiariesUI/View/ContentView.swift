@@ -13,7 +13,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selectedEscape: EscapeRoom?
-    
+    //var escapeRooms: [EscapeRoom] = []
     
     var body: some View {
         
@@ -23,34 +23,26 @@ struct ContentView: View {
                 List{
                     ForEach(EscapeRoomFactory.escapeRooms){ EscapeRoom in
                         ZStack{
-                            EscapeRoomPast(escapeRoom: EscapeRoom)
+                            EscapeRoomCell(escapeRoom: EscapeRoom)
                             
                                 .contextMenu{
                                     Button {
                                         self.setFeatured(item: EscapeRoom)
                                     } label: {
-                                        HStack{
-                                            Text("Destacar")
-                                            Image(systemName: "star")
-                                        }
+                                        Label("Destacar", systemImage: "star")
                                     }
 
                                     Button {
                                         self.setPast(item: EscapeRoom)
                                     } label: {
-                                        HStack{
-                                            Text("Pasado")
-                                            Image(systemName: "checkmark.circle")
-                                        }
+                                        Label(
+                                        "Pasado",systemImage: "checkmark.circle")
                                     }
 
                                     Button {
                                         self.delete(item: EscapeRoom)
                                     } label: {
-                                        HStack{
-                                            Text("Eliminar")
-                                            Image(systemName: "trsh")
-                                        }
+                                        Label("Eliminar", systemImage: "trash")
                                     }
                                 }
                                 .onTapGesture {
@@ -65,7 +57,7 @@ struct ContentView: View {
                 .navigationBarTitle("Salas de Escape")
                 
                 .sheet(item: self.$selectedEscape){ escapeRooms in
-                    DetailViewEscapeRoom(escapeRooms: escapeRooms)
+                    DetailViewEscapeRoom(settings: DetailFactory(), escapeRooms: escapeRooms)
                 }
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarTrailing){
@@ -76,7 +68,7 @@ struct ContentView: View {
                         }
                         
                         Button{
-                            //Añadir celdas
+                            //self.addRow()
                         }label: {
                             Image(systemName: "plus")
                                 .foregroundColor(.pink)
@@ -85,7 +77,7 @@ struct ContentView: View {
                     
                     ToolbarItem(placement: .navigationBarLeading){
                         Button {
-                            self.showFilterView.toggle()
+                            
                         } label: {
                             Image(systemName: "gear")
                                 .foregroundColor(.pink)
@@ -117,6 +109,9 @@ struct ContentView: View {
             EscapeRoomFactory.escapeRooms.remove(at: idx)
         }
     }
+    private func addRow(){
+        EscapeRoomFactory.escapeRooms.append(EscapeRoom(name: "Nombre", image: "",calification: 0, past: false, featured: false))
+    }
     
 }
 
@@ -126,7 +121,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct EscapeRoomPast: View{
+struct EscapeRoomCell: View{
     
     var escapeRoom: EscapeRoom
     
