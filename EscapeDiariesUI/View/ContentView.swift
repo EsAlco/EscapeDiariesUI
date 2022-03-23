@@ -13,7 +13,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var selectedEscape: EscapeRoom?
-    //var escapeRooms: [EscapeRoom] = []
+    
     
     var body: some View {
         
@@ -21,32 +21,32 @@ struct ContentView: View {
             
             VStack {
                 List{
-                    ForEach(EscapeRoomFactory.escapeRooms){ EscapeRoom in
+                    ForEach(EscapeRoomFactory.escapeRooms){ escapeRoom in
                         ZStack{
-                            EscapeRoomCell(escapeRoom: EscapeRoom)
+                            EscapeRoomCell(escapeRoom: escapeRoom)
                             
                                 .contextMenu{
                                     Button {
-                                        self.setFeatured(item: EscapeRoom)
+                                        self.setFeatured(item: escapeRoom)
                                     } label: {
                                         Label("Destacar", systemImage: "star")
                                     }
 
                                     Button {
-                                        self.setPast(item: EscapeRoom)
+                                        self.setPast(item: escapeRoom)
                                     } label: {
                                         Label(
                                         "Pasado",systemImage: "checkmark.circle")
                                     }
 
                                     Button {
-                                        self.delete(item: EscapeRoom)
+                                        self.delete(item: escapeRoom)
                                     } label: {
                                         Label("Eliminar", systemImage: "trash")
                                     }
                                 }
                                 .onTapGesture {
-                                    self.selectedEscape = EscapeRoom
+                                    self.selectedEscape = escapeRoom
                                 }
                            }
                     }
@@ -55,6 +55,7 @@ struct ContentView: View {
                     }
                 }
                 .navigationBarTitle("Salas de Escape")
+                .foregroundColor(.mint)
                 
                 .sheet(item: self.$selectedEscape){ escapeRooms in
                     DetailViewEscapeRoom(settings: DetailFactory(), escapeRooms: escapeRooms)
@@ -62,25 +63,25 @@ struct ContentView: View {
                 .toolbar {
                     ToolbarItemGroup(placement: .navigationBarTrailing){
                         
-                        NavigationLink(destination:FiltersView()){
+                        NavigationLink(destination:FiltersView(filter: FilterFactory())){
                                 Image(systemName: "slider.horizontal.3")
-                                    .foregroundColor(.pink)
+                                    .foregroundColor(.mint)
                         }
                         
                         Button{
                             //self.addRow()
                         }label: {
                             Image(systemName: "plus")
-                                .foregroundColor(.pink)
+                                .foregroundColor(.mint)
                         }
                     }
                     
                     ToolbarItem(placement: .navigationBarLeading){
                         Button {
                             
-                        } label: {
+                        }label: {
                             Image(systemName: "gear")
-                                .foregroundColor(.pink)
+                                .foregroundColor(.mint)
                         }
 
                     }
@@ -104,7 +105,7 @@ struct ContentView: View {
     }
 
     private func delete(item escapeRoom: EscapeRoom){
-        if let idx = EscapeRoomFactory.escapeRooms.firstIndex(where: {
+        if let idx = EscapeRoomFactory.escapeRooms.firstIndex(where:  {
             $0.id == escapeRoom.id}){
             EscapeRoomFactory.escapeRooms.remove(at: idx)
         }

@@ -1,5 +1,5 @@
 //
-//  FactoryEscapeRoom.swift
+//  EscapeRoomFactory.swift
 //  EscapeDiariesUI
 //
 //  Created by Esther Alcoceba Gutiérrez de León on 13/1/22.

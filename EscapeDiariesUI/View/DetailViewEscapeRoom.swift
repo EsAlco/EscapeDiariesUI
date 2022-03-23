@@ -55,7 +55,7 @@ struct DetailViewEscapeRoom: View {
                     }, label: {
                         Image(systemName: "xmark")
                             .font(.headline)
-                            .foregroundColor(.black)
+                            .foregroundColor(.mint)
                     })
                 }
             }
@@ -117,8 +117,10 @@ struct ValuationEscapeRoomView: View {
                     .font(.system(size: 17, weight: .black, design: .rounded))
                 Spacer()
                 Text("\(AverageRating()) / 5")
-                    .foregroundColor(.pink)
+                    .foregroundColor(.mint)
+                    .padding(.horizontal)
             }.padding(.horizontal)
+                .padding(.vertical, 2)
             HStack{
                 Text("Dificultdad:")
                 Spacer()
