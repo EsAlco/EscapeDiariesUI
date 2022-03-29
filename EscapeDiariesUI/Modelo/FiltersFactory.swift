@@ -6,26 +6,30 @@
 //
 
 import Foundation
+import Combine
 
-final class FilterFactory{
-    var defaults: UserDefaults
+final class FiltersFactory: ObservableObject {
     
-    init(defaults: UserDefaults = .standard){
+    @Published var defaults: UserDefaults
+
+    
+    init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
         
         defaults.register(defaults: [
-            "app.view.filters.purchased" : false,
+            "app.view.filters.past" : false,
             "app.view.filters.favorite" : false,
-            "app.view.filters.averageRating" : 0
+            "app.view.filters.maxAverageRating" : 5.0
         ])
+        
     }
     
-    var purchased: Bool{
+    var past: Bool{
         get{
-            defaults.bool(forKey: "app.view.filters.purchased")
+            defaults.bool(forKey: "app.view.filters.past")
         }
         set{
-            defaults.set(newValue, forKey: "app.view.filters.purchased")
+            defaults.set(newValue, forKey: "app.view.filters.past")
         }
     }
     var favorite: Bool{
@@ -36,12 +40,12 @@ final class FilterFactory{
             defaults.set(newValue, forKey: "app.view.filters.favorite")
         }
     }
-    var averageRating: Int{
+    var maxAverageRating: Double{
         get{
-            defaults.integer(forKey: "app.view.filters.averageRating")
+            defaults.double(forKey: "app.view.filters.maxAverageRating")
         }
         set{
-            defaults.set(newValue, forKey: "app.view.filters.averageRating")
+            defaults.set(newValue, forKey: "app.view.filters.maxAverageRating")
         }
     }
     

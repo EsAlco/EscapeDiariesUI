@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DetailFactory{
+/*final class DetailFactory{
     var defaults: UserDefaults
     
     init(defaults: UserDefaults = .standard){
@@ -65,4 +65,4 @@ final class DetailFactory{
     }
 
 }
-
+*/

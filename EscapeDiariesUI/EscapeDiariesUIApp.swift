@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct EscapeDiariesUIApp: App {
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(EscapeRoomFactory())
+                
+                
         }
     }
 }

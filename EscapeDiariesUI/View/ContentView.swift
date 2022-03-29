@@ -12,151 +12,124 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @State private var selectedEscape: EscapeRoom?
+  /*  @State var escapeRooms = ]*/
+    
+    @EnvironmentObject var escapeRoomFactory: EscapeRoomFactory
+    @State private var selectedEscapeRoom: EscapeRoom?
+    
+    @State private var showFiltersView: Bool = false
+   
+    
+    @ObservedObject var filters = FiltersFactory()
+    
+    private var filteredEscapeRoom: [EscapeRoom]{
+        return escapeRoomFactory.escapeRooms.filter { escapeRoom in
+            let checkPast = (self.filters.past && escapeRoom.past) || !self.filters.past
+            let checkFavorite = (self.filters.favorite && escapeRoom.featured) || !self.filters.favorite
+            let checkPrice = (escapeRoom.averageRating <= self.filters.maxAverageRating)
+            return checkPast && checkFavorite && checkPrice
+        }
+    }
     
     
     var body: some View {
-        
         NavigationView{
-            
-            VStack {
-                List{
-                    ForEach(EscapeRoomFactory.escapeRooms){ escapeRoom in
-                        ZStack{
-                            EscapeRoomCell(escapeRoom: escapeRoom)
-                            
-                                .contextMenu{
-                                    Button {
-                                        self.setFeatured(item: escapeRoom)
-                                    } label: {
-                                        Label("Destacar", systemImage: "star")
-                                    }
-
-                                    Button {
-                                        self.setPast(item: escapeRoom)
-                                    } label: {
-                                        Label(
-                                        "Pasado",systemImage: "checkmark.circle")
-                                    }
-
-                                    Button {
-                                        self.delete(item: escapeRoom)
-                                    } label: {
-                                        Label("Eliminar", systemImage: "trash")
-                                    }
+            List{
+                ForEach(filteredEscapeRoom, id: \.id){ escapeRoom in
+                    ZStack{
+                        EscapeRoomRow(escapeRoom: $escapeRoomFactory.escapeRooms[escapeRoom.id])
+                            .contextMenu{
+                                Button {
+                                    self.setFeatured(item: escapeRoom)
+                                } label: {
+                                    Label("Favorito", systemImage: "star")
                                 }
-                                .onTapGesture {
-                                    self.selectedEscape = escapeRoom
+
+                                Button {
+                                    self.setPast(item: escapeRoom)
+                                } label: {
+                                    Label("Pasado",systemImage: "checkmark.circle")
                                 }
-                           }
-                    }
-                    .onDelete{ (indexSet) in
-                        EscapeRoomFactory.escapeRooms.remove(atOffsets: indexSet)
-                    }
-                }
-                .navigationBarTitle("Salas de Escape")
-                .foregroundColor(.mint)
-                
-                .sheet(item: self.$selectedEscape){ escapeRooms in
-                    DetailViewEscapeRoom(settings: DetailFactory(), escapeRooms: escapeRooms)
-                }
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarTrailing){
-                        
-                        NavigationLink(destination:FiltersView(filter: FilterFactory())){
-                                Image(systemName: "slider.horizontal.3")
-                                    .foregroundColor(.mint)
-                        }
-                        
-                        Button{
-                            //self.addRow()
-                        }label: {
-                            Image(systemName: "plus")
-                                .foregroundColor(.mint)
-                        }
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarLeading){
-                        Button {
-                            
-                        }label: {
-                            Image(systemName: "gear")
-                                .foregroundColor(.mint)
-                        }
 
-                    }
-                    
+                                Button(role: .destructive) {
+                                    self.delete(item: escapeRoom)
+                                }label: {
+                                    Label("Eliminar", systemImage: "trash")
+                                }
+                            }
+                            .onTapGesture {
+                                self.selectedEscapeRoom = escapeRoom
+                            }
+                       }
                 }
-
+                .onDelete{ (indexSet) in
+                    self.escapeRoomFactory.escapeRooms.remove(atOffsets: indexSet)
+                }
             }
+            .navigationBarTitle("Salas de Escape")
+            .foregroundColor(.mint)
+            
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing){
+               
+                    Button{
+                        self.showFiltersView = true
+                    }label: {
+                        Image(systemName: "slider.horizontal.3")
+                            .foregroundColor(.mint)
+                    }
+                    
+                    Button{
+                        addEscapeRoom()
+                    }label: {
+                        Image(systemName: "plus")
+                            .foregroundColor(.mint)
+                    }
+                }
+            }.sheet(isPresented: $showFiltersView){
+                FiltersView()
+            }
+            
+            .sheet(item: $selectedEscapeRoom){ escapeRoom in
+                DetailViewEscapeRoom(escapeRoom: escapeRoom, name: $escapeRoomFactory.escapeRooms[escapeRoom.id].name, image: $escapeRoomFactory.escapeRooms[escapeRoom.id].image, description: $escapeRoomFactory.escapeRooms[escapeRoom.id].description, difficulty: $escapeRoomFactory.escapeRooms[escapeRoom.id].difficulty, lineal: $escapeRoomFactory.escapeRooms[escapeRoom.id].lineal, recreation: $escapeRoomFactory.escapeRooms[escapeRoom.id].recreation, gameMaster: $escapeRoomFactory.escapeRooms[escapeRoom.id].gameMaster)
+            }
+
+        }
+    
+    }
+    private func setPast(item escapeRoom: EscapeRoom){
+        if let idx = escapeRoomFactory.escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
+            escapeRoomFactory.escapeRooms[idx].past.toggle()
         }
     }
     
     private func setFeatured(item escapeRoom: EscapeRoom){
-        if let idx = EscapeRoomFactory.escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
-            EscapeRoomFactory.escapeRooms[idx].featured.toggle()
-        }
-    }
-
-    private func setPast(item escapeRoom: EscapeRoom){
-        if let idx = EscapeRoomFactory.escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
-            EscapeRoomFactory.escapeRooms[idx].past.toggle()
+        if let idx = escapeRoomFactory.escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
+            escapeRoomFactory.escapeRooms[idx].featured.toggle()
         }
     }
 
     private func delete(item escapeRoom: EscapeRoom){
-        if let idx = EscapeRoomFactory.escapeRooms.firstIndex(where:  {
+        if let idx = escapeRoomFactory.escapeRooms.firstIndex(where:  {
             $0.id == escapeRoom.id}){
-            EscapeRoomFactory.escapeRooms.remove(at: idx)
+            escapeRoomFactory.escapeRooms.remove(at: idx)
         }
     }
-    private func addRow(){
-        EscapeRoomFactory.escapeRooms.append(EscapeRoom(name: "Nombre", image: "",calification: 0, past: false, featured: false))
+    
+    private func addEscapeRoom(){
+        withAnimation{
+            let newEscapeRoom = EscapeRoom(id: (escapeRoomFactory.escapeRooms.count), name: "Nombre", image: "AddImage", averageRating: 0, description: "", difficulty: -1, lineal: -1, recreation: -1, gameMaster: -1)
+            escapeRoomFactory.escapeRooms.append(newEscapeRoom)
+        }
     }
     
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView().environmentObject(EscapeRoomFactory())
     }
 }
 
-struct EscapeRoomCell: View{
-    
-    var escapeRoom: EscapeRoom
-    
-    var body: some View{
-        HStack{
-            Image(escapeRoom.image)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 60, height: 60)
-                .clipped()
-                .cornerRadius(30)
 
-            HStack{
-                Text(escapeRoom.name)
-                    .font(.system(.callout, design: .rounded))
-                Text(String(escapeRoom.calification))
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-            }
-            Spacer().layoutPriority(-10)
-            
-            //definimos los bool
-            
-            if escapeRoom.featured{
-                Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
-            }
-            Spacer()
-            
-            if escapeRoom.past{
-                Image(systemName: "checkmark.circle.fill")
-                    .foregroundColor(.green)
-            }
-        }
-    }
-}
 

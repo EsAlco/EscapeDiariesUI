@@ -8,12 +8,13 @@
 import Foundation
 
 
-struct EscapeRoomFactory{
+final class EscapeRoomFactory: ObservableObject {
     
-    static var escapeRooms = [
-        
-        EscapeRoom(name: "La Nevera", image: "DaleAlCoco",calification: 6.5, past: true, featured: false),
-        EscapeRoom(name: "El Bunker", image: "FoxInABox", calification: 8.7, past: true, featured: true),
-        EscapeRoom(name: "Tras el espejo", image: "TheRomboCode", calification: 0.0, past: false, featured: false)
+    @Published var escapeRooms: [EscapeRoom] =
+    [
+        EscapeRoom(id: 0, name: "La Nevera", image: "DaleAlCoco",averageRating: 3.5, past: true, featured: false, description: "", difficulty: 2, lineal: 4, recreation: 2, gameMaster: 4),
+        EscapeRoom(id: 1, name: "El Bunker", image: "FoxInABox", averageRating: 4.7, past: true, featured: true, description: "", difficulty: 3, lineal: 1, recreation: 5, gameMaster: 3),
+        EscapeRoom(id: 2, name: "Tras el espejo", image: "TheRomboCode", averageRating: 1.0, past: false, featured: false, description: "", difficulty: 4, lineal: 3, recreation: 5, gameMaster: 3)
     ]
-}
+    
+    }

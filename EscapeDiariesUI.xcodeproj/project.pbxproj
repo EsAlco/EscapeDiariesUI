@@ -9,9 +9,14 @@
 /* Begin PBXBuildFile section */
 		EB15E85327EA30FD00D0E982 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85227EA30FD00D0E982 /* FiltersView.swift */; };
 		EB15E85527EA706200D0E982 /* DetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85427EA706200D0E982 /* DetailFactory.swift */; };
-		EB15E85727EB3D9300D0E982 /* FilterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85627EB3D9300D0E982 /* FilterFactory.swift */; };
+		EB15E85727EB3D9300D0E982 /* FiltersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */; };
 		EB67D2CA2790E4EB00D70158 /* EscapeRoomFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2C92790E4EB00D70158 /* EscapeRoomFactory.swift */; };
 		EB67D2CC2790E51600D70158 /* EscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2CB2790E51600D70158 /* EscapeRoom.swift */; };
+		EB9542E427F315AE0083A1ED /* EscapeRoomRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E327F315AE0083A1ED /* EscapeRoomRow.swift */; };
+		EB9542E627F316F00083A1ED /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E527F316F00083A1ED /* DescriptionView.swift */; };
+		EB9542E827F318480083A1ED /* ValuationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E727F318480083A1ED /* ValuationView.swift */; };
+		EB9542EA27F319BB0083A1ED /* NameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E927F319BB0083A1ED /* NameView.swift */; };
+		EB9542EC27F319C70083A1ED /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542EB27F319C70083A1ED /* ImageView.swift */; };
 		EBB285CF27E9F41700D1241D /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB285CE27E9F41700D1241D /* RatingView.swift */; };
 		EBC34FD227722C060064E4E0 /* DetailViewEscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */; };
 		EBD04227276ABFA900DFCC40 /* EscapeDiariesUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBD04226276ABFA900DFCC40 /* EscapeDiariesUIApp.swift */; };
@@ -23,9 +28,14 @@
 /* Begin PBXFileReference section */
 		EB15E85227EA30FD00D0E982 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		EB15E85427EA706200D0E982 /* DetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFactory.swift; sourceTree = "<group>"; };
-		EB15E85627EB3D9300D0E982 /* FilterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterFactory.swift; sourceTree = "<group>"; };
+		EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersFactory.swift; sourceTree = "<group>"; };
 		EB67D2C92790E4EB00D70158 /* EscapeRoomFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoomFactory.swift; sourceTree = "<group>"; };
 		EB67D2CB2790E51600D70158 /* EscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoom.swift; sourceTree = "<group>"; };
+		EB9542E327F315AE0083A1ED /* EscapeRoomRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoomRow.swift; sourceTree = "<group>"; };
+		EB9542E527F316F00083A1ED /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
+		EB9542E727F318480083A1ED /* ValuationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuationView.swift; sourceTree = "<group>"; };
+		EB9542E927F319BB0083A1ED /* NameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameView.swift; sourceTree = "<group>"; };
+		EB9542EB27F319C70083A1ED /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		EBB285CE27E9F41700D1241D /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewEscapeRoom.swift; sourceTree = "<group>"; };
 		EBD04223276ABFA900DFCC40 /* EscapeDiariesUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EscapeDiariesUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +62,7 @@
 				EB67D2C92790E4EB00D70158 /* EscapeRoomFactory.swift */,
 				EB67D2CB2790E51600D70158 /* EscapeRoom.swift */,
 				EB15E85427EA706200D0E982 /* DetailFactory.swift */,
-				EB15E85627EB3D9300D0E982 /* FilterFactory.swift */,
+				EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */,
 			);
 			path = Modelo;
 			sourceTree = "<group>";
@@ -60,10 +70,15 @@
 		EB67D2CD2790E52000D70158 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */,
 				EBD04228276ABFA900DFCC40 /* ContentView.swift */,
-				EBB285CE27E9F41700D1241D /* RatingView.swift */,
+				EBC34FD127722C060064E4E0 /* DetailViewEscapeRoom.swift */,
+				EB9542E327F315AE0083A1ED /* EscapeRoomRow.swift */,
 				EB15E85227EA30FD00D0E982 /* FiltersView.swift */,
+				EB9542E927F319BB0083A1ED /* NameView.swift */,
+				EB9542EB27F319C70083A1ED /* ImageView.swift */,
+				EB9542E527F316F00083A1ED /* DescriptionView.swift */,
+				EBB285CE27E9F41700D1241D /* RatingView.swift */,
+				EB9542E727F318480083A1ED /* ValuationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,14 +189,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB9542EA27F319BB0083A1ED /* NameView.swift in Sources */,
 				EB67D2CC2790E51600D70158 /* EscapeRoom.swift in Sources */,
 				EB15E85527EA706200D0E982 /* DetailFactory.swift in Sources */,
+				EB9542E427F315AE0083A1ED /* EscapeRoomRow.swift in Sources */,
 				EB67D2CA2790E4EB00D70158 /* EscapeRoomFactory.swift in Sources */,
+				EB9542E827F318480083A1ED /* ValuationView.swift in Sources */,
 				EBD04229276ABFA900DFCC40 /* ContentView.swift in Sources */,
 				EB15E85327EA30FD00D0E982 /* FiltersView.swift in Sources */,
 				EBB285CF27E9F41700D1241D /* RatingView.swift in Sources */,
-				EB15E85727EB3D9300D0E982 /* FilterFactory.swift in Sources */,
+				EB9542E627F316F00083A1ED /* DescriptionView.swift in Sources */,
+				EB15E85727EB3D9300D0E982 /* FiltersFactory.swift in Sources */,
 				EBD04227276ABFA900DFCC40 /* EscapeDiariesUIApp.swift in Sources */,
+				EB9542EC27F319C70083A1ED /* ImageView.swift in Sources */,
 				EBC34FD227722C060064E4E0 /* DetailViewEscapeRoom.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
