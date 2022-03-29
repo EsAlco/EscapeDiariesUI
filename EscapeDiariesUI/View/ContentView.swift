@@ -91,7 +91,7 @@ struct ContentView: View {
             }
             
             .sheet(item: $selectedEscapeRoom){ escapeRoom in
-                DetailViewEscapeRoom(escapeRoom: escapeRoom, name: $escapeRoomFactory.escapeRooms[escapeRoom.id].name, image: $escapeRoomFactory.escapeRooms[escapeRoom.id].image, description: $escapeRoomFactory.escapeRooms[escapeRoom.id].description, difficulty: $escapeRoomFactory.escapeRooms[escapeRoom.id].difficulty, lineal: $escapeRoomFactory.escapeRooms[escapeRoom.id].lineal, recreation: $escapeRoomFactory.escapeRooms[escapeRoom.id].recreation, gameMaster: $escapeRoomFactory.escapeRooms[escapeRoom.id].gameMaster)
+                DetailViewEscapeRoom(escapeRoom: escapeRoom, name: $escapeRoomFactory.escapeRooms[escapeRoom.id].name, image: $escapeRoomFactory.escapeRooms[escapeRoom.id].image, description: $escapeRoomFactory.escapeRooms[escapeRoom.id].description, averageRating: $escapeRoomFactory.escapeRooms[escapeRoom.id].averageRating, difficulty: $escapeRoomFactory.escapeRooms[escapeRoom.id].difficulty, lineal: $escapeRoomFactory.escapeRooms[escapeRoom.id].lineal, recreation: $escapeRoomFactory.escapeRooms[escapeRoom.id].recreation, gameMaster: $escapeRoomFactory.escapeRooms[escapeRoom.id].gameMaster)
             }
 
         }

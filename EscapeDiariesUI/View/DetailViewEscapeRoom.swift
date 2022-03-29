@@ -16,6 +16,7 @@ struct DetailViewEscapeRoom: View {
     @Binding var name: String
     @Binding var image: String
     @Binding var description: String
+    @Binding var averageRating: Double
     @Binding var difficulty: Int
     @Binding var lineal: Int
     @Binding var recreation: Int
@@ -30,7 +31,7 @@ struct DetailViewEscapeRoom: View {
                     
                     DescriptionView(description: $description)
                     
-                    ValuationView(difficulty: $difficulty, lineal: $lineal, recreation: $recreation, gameMaster: $gameMaster)
+                    ValuationView(averageRating: $averageRating, difficulty: $difficulty, lineal: $lineal, recreation: $recreation, gameMaster: $gameMaster)
                         .padding(.top)
                     
                     Spacer()
@@ -63,6 +64,6 @@ struct DetailViewEscapeRoom: View {
 
 struct DetailViewEscapeRoom_Previews: PreviewProvider {
     static var previews: some View {
-        DetailViewEscapeRoom(escapeRoom: EscapeRoom(id: 0, name: "La Nevera", image: "DaleAlCoco",averageRating: 3.5, past: true, featured: false, description: "", difficulty: 2, lineal: 4, recreation: 2, gameMaster: 4), name: .constant(""), image: .constant(""), description: .constant(""), difficulty: .constant(1), lineal: .constant(1), recreation: .constant(2), gameMaster: .constant(2))
+        DetailViewEscapeRoom(escapeRoom: EscapeRoom(id: 0, name: "La Nevera", image: "DaleAlCoco",averageRating: 3.5, past: true, featured: false, description: "", difficulty: 2, lineal: 4, recreation: 2, gameMaster: 4), name: .constant(""), image: .constant(""), description: .constant(""), averageRating: .constant(3.75), difficulty: .constant(1), lineal: .constant(1), recreation: .constant(2), gameMaster: .constant(2))
     }
 }

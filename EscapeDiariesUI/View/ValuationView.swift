@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ValuationView: View {
     
+    @Binding var averageRating: Double
     @Binding var difficulty: Int
     @Binding var lineal: Int
     @Binding var recreation: Int
@@ -54,13 +55,13 @@ struct ValuationView: View {
     // Puntuacion de la media de todas las valoraciones
     func AverageRating() -> String{
         let sumRating = difficulty + lineal + recreation + gameMaster
-        let averageRating =  (Double(sumRating) + 4.0) / 4.0
+        averageRating =  (Double(sumRating) + 4.0) / 4.0
         return String(format: "%.2f", averageRating)
     }
 }
 
 struct ValuationView_Previews: PreviewProvider {
     static var previews: some View {
-        ValuationView(difficulty: .constant(1), lineal: .constant(2), recreation: .constant(3), gameMaster: .constant(3))
+        ValuationView(averageRating: .constant(3.75),difficulty: .constant(1), lineal: .constant(2), recreation: .constant(3), gameMaster: .constant(3))
     }
 }
