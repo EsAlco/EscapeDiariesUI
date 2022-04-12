@@ -20,7 +20,6 @@ struct SelectorThemesView: View {
             ZStack {
                 Circle()
                     .foregroundColor(.mint)
-                    .frame(width: 70)
                     .onTapGesture {
                         color = .mint
                         withAnimation(Animation.linear){
@@ -28,18 +27,17 @@ struct SelectorThemesView: View {
                             showAnimationPink = false
                             showAnimationYellow = false
                         }
-                }
+                    }
+                    .padding(3)
                 Circle()
-                    .stroke(lineWidth: 9)
+                    .stroke(lineWidth: 4)
                     .foregroundColor(.gray)
                     .opacity(showAnimationMint ? 0.5 : 0)
-                    .frame(width: 80)
-            }.padding()
+            }
             
             ZStack {
                 Circle()
                     .foregroundColor(.pink)
-                    .frame(width: 70)
                     .onTapGesture {
                         color = .pink
                         withAnimation(Animation.linear){
@@ -47,18 +45,17 @@ struct SelectorThemesView: View {
                             showAnimationPink = true
                             showAnimationYellow = false
                         }
-                }
+                    }
+                    .padding(3)
                 Circle()
-                    .stroke(lineWidth: 9)
+                    .stroke(lineWidth: 4)
                     .foregroundColor(.gray)
                     .opacity(showAnimationPink ? 0.5 : 0)
-                    .frame(width: 80)
-            }.padding()
+            }
             
             ZStack {
                 Circle()
                     .foregroundColor(.yellow)
-                    .frame(width: 70)
                     .onTapGesture {
                         color = .yellow
                         withAnimation(Animation.linear){
@@ -66,13 +63,13 @@ struct SelectorThemesView: View {
                             showAnimationPink = false
                             showAnimationYellow = true
                         }
-                }
+                    }
+                    .padding(3)
                 Circle()
-                    .stroke(lineWidth: 9)
+                    .stroke(lineWidth: 4)
                     .foregroundColor(.gray)
                     .opacity(showAnimationYellow ? 0.5 : 0)
-                    .frame(width: 80)
-            }.padding()
+            }
         }
     }
 }

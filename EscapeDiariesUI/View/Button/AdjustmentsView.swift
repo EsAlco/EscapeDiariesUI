@@ -25,5 +25,6 @@ struct AdjustmentsView: View {
 struct AdjustmentsView_Previews: PreviewProvider {
     static var previews: some View {
         AdjustmentsView(theme: .constant(.mint))
+            .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }
