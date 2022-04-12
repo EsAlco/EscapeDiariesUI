@@ -11,7 +11,6 @@ import Combine
 final class FiltersFactory: ObservableObject {
     
     @Published var defaults: UserDefaults
-
     
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
@@ -48,7 +47,5 @@ final class FiltersFactory: ObservableObject {
             defaults.set(newValue, forKey: "app.view.filters.maxAverageRating")
         }
     }
-    
-
 }
 

@@ -9,7 +9,9 @@ import SwiftUI
 
 struct FiltersView: View {
     
-    @ObservedObject var filters = FiltersFactory()
+    @ObservedObject var filtersFactory = FiltersFactory()
+    
+    @Binding var theme: Color
     
     @State private var showPastOnly = false
     @State private var showFavoriteOnly = false
@@ -32,10 +34,10 @@ struct FiltersView: View {
             Form{
                 Section(header: Text("")){
                     Toggle("Sólo realizados", isOn: $showPastOnly)
-                        .toggleStyle(SwitchToggleStyle(tint: .mint))
+                        .toggleStyle(SwitchToggleStyle(tint: theme))
                     
                     Toggle("Sólo favoritos", isOn: $showFavoriteOnly)
-                        .toggleStyle(SwitchToggleStyle(tint: .mint))
+                        .toggleStyle(SwitchToggleStyle(tint: theme))
                     
                     HStack {
                         Text("Mostrar \(String(maxAverageRating)) o menos puntuación")
@@ -45,7 +47,7 @@ struct FiltersView: View {
                         }, onDecrement: {
                             self.maxAverageRating -= 1.0
                         }).labelsHidden()
-                            .background(.mint)
+                            .background(theme)
                             .cornerRadius(8)
                     }
                 }
@@ -54,12 +56,6 @@ struct FiltersView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button{
-                        self.filters.past = self.showPastOnly
-                        self.filters.favorite = self.showFavoriteOnly
-                        self.filters.maxAverageRating = self.maxAverageRating
-                        
-                        self.filters.objectWillChange.send()
-                        
                         self.presentationMode.wrappedValue.dismiss()
                     }label: {
                         Image(systemName: "checkmark.circle")
@@ -70,15 +66,20 @@ struct FiltersView: View {
             }
         }
         .onAppear {
-            self.showPastOnly = self.filters.past
-            self.showFavoriteOnly = self.filters.favorite
-            self.maxAverageRating = self.filters.maxAverageRating
+            self.showPastOnly = self.filtersFactory.past
+            self.showFavoriteOnly = self.filtersFactory.favorite
+            self.maxAverageRating = self.filtersFactory.maxAverageRating
+        }
+        .onDisappear{
+            self.filtersFactory.past = self.showPastOnly
+            self.filtersFactory.favorite = self.showFavoriteOnly
+            self.filtersFactory.maxAverageRating = self.maxAverageRating
         }
     }
 }
 
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FiltersView(filters: FiltersFactory())
+        FiltersView(filtersFactory: FiltersFactory(), theme: .constant(.mint))
     }
 }

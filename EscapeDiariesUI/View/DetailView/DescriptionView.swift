@@ -10,6 +10,7 @@ import SwiftUI
 struct DescriptionView: View {
     
     @Binding var description: String
+    @Binding var color: Color
     
     var body: some View {
         VStack{
@@ -23,9 +24,10 @@ struct DescriptionView: View {
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .frame(width: 350, height: 100, alignment:  .topLeading)
                 .padding(7)
-                .background(Color(hue: 0.436, saturation: 0.101, brightness: 1.0))
+                .background(color == .mint ? Color("lightMint") : color == .pink ? Color("lightPink") : Color("lightYellow"))
                 .cornerRadius(8)
                 .padding(.horizontal)
+                
             
         }
     }
@@ -33,6 +35,6 @@ struct DescriptionView: View {
 
 struct DescriptionView_Previews: PreviewProvider {
     static var previews: some View {
-        DescriptionView(description: .constant("Hola"))
+        DescriptionView(description: .constant("Hola"), color: .constant(Color("lightMint")))
     }
 }

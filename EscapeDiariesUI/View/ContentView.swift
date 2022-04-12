@@ -8,34 +8,24 @@
 import SwiftUI
 
 
-
-
 struct ContentView: View {
-    
-  /*  @State var escapeRooms = ]*/
     
     @EnvironmentObject var escapeRoomFactory: EscapeRoomFactory
     @State private var selectedEscapeRoom: EscapeRoom?
     
     @State private var showFiltersView: Bool = false
-   
+    @State private var showNewEscapeRoom: Bool = false
+    @State private var showAdjustmentsView: Bool = false
     
-    @ObservedObject var filters = FiltersFactory()
+    @ObservedObject var filtersFactory = FiltersFactory()
     
-    private var filteredEscapeRoom: [EscapeRoom]{
-        return escapeRoomFactory.escapeRooms.filter { escapeRoom in
-            let checkPast = (self.filters.past && escapeRoom.past) || !self.filters.past
-            let checkFavorite = (self.filters.favorite && escapeRoom.featured) || !self.filters.favorite
-            let checkPrice = (escapeRoom.averageRating <= self.filters.maxAverageRating)
-            return checkPast && checkFavorite && checkPrice
-        }
-    }
+    @ObservedObject var theme = Themes()
     
     
     var body: some View {
         NavigationView{
             List{
-                ForEach(filteredEscapeRoom, id: \.id){ escapeRoom in
+                ForEach(escapeRoomFactory.escapeRooms.filter(shouldShowEscapeRoom), id: \.id){ escapeRoom in
                     ZStack{
                         EscapeRoomRow(escapeRoom: $escapeRoomFactory.escapeRooms[escapeRoom.id])
                             .contextMenu{
@@ -67,33 +57,57 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle("Salas de Escape")
-            .foregroundColor(.mint)
+            .foregroundColor(theme.theme)
             
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button{
+                        self.showAdjustmentsView.toggle()
+                    }label: {
+                        Image(systemName: "gear")
+                            .foregroundColor(theme.theme)
+                    }
+                }
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                
                     Button{
                         self.showFiltersView = true
                     }label: {
                         Image(systemName: "slider.horizontal.3")
-                            .foregroundColor(.mint)
+                            .foregroundColor(theme.theme)
                     }
                     
                     Button{
                         addEscapeRoom()
+                        self.showNewEscapeRoom.toggle()
                     }label: {
                         Image(systemName: "plus")
-                            .foregroundColor(.mint)
+                            .foregroundColor(theme.theme)
                     }
                 }
-            }.sheet(isPresented: $showFiltersView){
-                FiltersView()
             }
-            
+            .sheet(isPresented: $showAdjustmentsView){
+                AdjustmentsView(theme: $theme.theme)
+            }
+            .sheet(isPresented: $showFiltersView){
+                FiltersView(theme: $theme.theme)
+            }
+            .sheet(isPresented: $showNewEscapeRoom){
+                let idx = escapeRoomFactory.escapeRooms.count - 1
+                EditorNameImageView(name: $escapeRoomFactory.escapeRooms[idx].name, color: $escapeRoomFactory.escapeRooms[idx].color, image: $escapeRoomFactory.escapeRooms[idx].image)
+            }
             .sheet(item: $selectedEscapeRoom){ escapeRoom in
-                DetailViewEscapeRoom(escapeRoom: escapeRoom, name: $escapeRoomFactory.escapeRooms[escapeRoom.id].name, image: $escapeRoomFactory.escapeRooms[escapeRoom.id].image, description: $escapeRoomFactory.escapeRooms[escapeRoom.id].description, averageRating: $escapeRoomFactory.escapeRooms[escapeRoom.id].averageRating, difficulty: $escapeRoomFactory.escapeRooms[escapeRoom.id].difficulty, lineal: $escapeRoomFactory.escapeRooms[escapeRoom.id].lineal, recreation: $escapeRoomFactory.escapeRooms[escapeRoom.id].recreation, gameMaster: $escapeRoomFactory.escapeRooms[escapeRoom.id].gameMaster)
+                DetailViewEscapeRoom(escapeRoom: escapeRoom,
+                                     name: $escapeRoomFactory.escapeRooms[escapeRoom.id].name,
+                                     image: $escapeRoomFactory.escapeRooms[escapeRoom.id].image,
+                                     description: $escapeRoomFactory.escapeRooms[escapeRoom.id].description,
+                                     averageRating: $escapeRoomFactory.escapeRooms[escapeRoom.id].averageRating,
+                                     difficulty: $escapeRoomFactory.escapeRooms[escapeRoom.id].difficulty,
+                                     lineal: $escapeRoomFactory.escapeRooms[escapeRoom.id].lineal,
+                                     recreation: $escapeRoomFactory.escapeRooms[escapeRoom.id].recreation,
+                                     gameMaster: $escapeRoomFactory.escapeRooms[escapeRoom.id].gameMaster,
+                                     color: $escapeRoomFactory.escapeRooms[escapeRoom.id].color)
             }
-
         }
     
     }
@@ -116,9 +130,16 @@ struct ContentView: View {
         }
     }
     
+    private func shouldShowEscapeRoom(escapeRoom: EscapeRoom) -> Bool {
+        let checkPast = (self.filtersFactory.past && escapeRoom.past) || !self.filtersFactory.past
+        let checkFavorite = (self.filtersFactory.favorite && escapeRoom.featured) || !self.filtersFactory.favorite
+        let checkPrice = (escapeRoom.averageRating <= self.filtersFactory.maxAverageRating)
+            return checkPast && checkFavorite && checkPrice
+    }
+    
     private func addEscapeRoom(){
         withAnimation{
-            let newEscapeRoom = EscapeRoom(id: (escapeRoomFactory.escapeRooms.count), name: "Nombre", image: "AddImage", averageRating: 0, description: "", difficulty: -1, lineal: -1, recreation: -1, gameMaster: -1)
+            let newEscapeRoom = EscapeRoom(id: (escapeRoomFactory.escapeRooms.count), name: "Nombre", image: "AddImage", averageRating: 0, description: "", difficulty: -1, lineal: -1, recreation: -1, gameMaster: -1, color: .mint)
             escapeRoomFactory.escapeRooms.append(newEscapeRoom)
         }
     }

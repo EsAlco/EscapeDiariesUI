@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EscapeRoomRow: View {
+    
     @Binding var escapeRoom: EscapeRoom
     
     var body: some View {
@@ -22,7 +23,7 @@ struct EscapeRoomRow: View {
             HStack{
                 Text(escapeRoom.name)
                     .font(.system(.callout, design: .rounded))
-                Text(String(escapeRoom.averageRating))
+                Text(String(format: "%.2f", escapeRoom.averageRating))
                     .font(.subheadline)
                     .foregroundColor(.gray)
             }
@@ -41,15 +42,12 @@ struct EscapeRoomRow: View {
                     .foregroundColor(.green)
             }
         }
-    
-
-
     }
 }
 
 struct EscapeRoomRow_Previews: PreviewProvider {
     static var previews: some View {
-        EscapeRoomRow(escapeRoom: .constant(EscapeRoom(id: 0, name: "La Nevera", image: "DaleAlCoco",averageRating: 3.5, past: true, featured: false, description: "", difficulty: 2, lineal: 4, recreation: 2, gameMaster: 4)))
+        EscapeRoomRow(escapeRoom: .constant(EscapeRoom(id: 0, name: "La Nevera", image: "DaleAlCoco",averageRating: 3.5, past: true, featured: false, description: "", difficulty: 2, lineal: 4, recreation: 2, gameMaster: 4, color: .black)))
     }
 }
 

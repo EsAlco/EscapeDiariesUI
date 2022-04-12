@@ -22,6 +22,10 @@ struct DetailViewEscapeRoom: View {
     @Binding var recreation: Int
     @Binding var gameMaster: Int
     
+    @Binding var color: Color
+    
+    @State var showEditor: Bool = false
+    
     var body: some View {
         NavigationView{
             ScrollView{
@@ -29,9 +33,9 @@ struct DetailViewEscapeRoom: View {
 
                     ImageView(image: $image)
                     
-                    DescriptionView(description: $description)
+                    DescriptionView(description: $description, color: $color)
                     
-                    ValuationView(averageRating: $averageRating, difficulty: $difficulty, lineal: $lineal, recreation: $recreation, gameMaster: $gameMaster)
+                    ValuationView(averageRating: $averageRating, difficulty: $difficulty, lineal: $lineal, recreation: $recreation, gameMaster: $gameMaster, color: $color)
                         .padding(.top)
                     
                     Spacer()
@@ -40,22 +44,29 @@ struct DetailViewEscapeRoom: View {
                 
 
             }
-            .navigationTitle(escapeRoom.name)
+            .navigationTitle(name)
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button (action: {
+                        self.showEditor.toggle()
+                    }, label: {
+                        Text("Editar")
+                            .font(.headline)
+                            .foregroundColor(color)
+                    })
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button (action: {
-                        
-                        
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
                         Image(systemName: "xmark")
                             .font(.headline)
-                            .foregroundColor(.mint)
+                            .foregroundColor(color)
                     })
                 }
             }
-            .onAppear{
-                
+            .sheet(isPresented: $showEditor) {
+                EditorNameImageView(name: $name, color: $color, image: $image)
             }
         }
 
@@ -64,6 +75,6 @@ struct DetailViewEscapeRoom: View {
 
 struct DetailViewEscapeRoom_Previews: PreviewProvider {
     static var previews: some View {
-        DetailViewEscapeRoom(escapeRoom: EscapeRoom(id: 0, name: "La Nevera", image: "DaleAlCoco",averageRating: 3.5, past: true, featured: false, description: "", difficulty: 2, lineal: 4, recreation: 2, gameMaster: 4), name: .constant(""), image: .constant(""), description: .constant(""), averageRating: .constant(3.75), difficulty: .constant(1), lineal: .constant(1), recreation: .constant(2), gameMaster: .constant(2))
+        DetailViewEscapeRoom(escapeRoom: EscapeRoom(id: 0, name: "La Nevera", image: "DaleAlCoco",averageRating: 3.5, past: true, featured: false, description: "", difficulty: 2, lineal: 4, recreation: 2, gameMaster: 4, color: .mint), name: .constant("Nombre"), image: .constant("AddImage"), description: .constant(""), averageRating: .constant(3.75), difficulty: .constant(1), lineal: .constant(1), recreation: .constant(2), gameMaster: .constant(2), color: .constant(.mint))
     }
 }

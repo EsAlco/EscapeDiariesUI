@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-struct EscapeRoom: Identifiable, Codable {
+struct EscapeRoom: Identifiable {
     //var id = UUID()
     var id: Int
     var name: String
@@ -20,4 +21,5 @@ struct EscapeRoom: Identifiable, Codable {
     var lineal: Int
     var recreation: Int
     var gameMaster: Int
+    var color: Color
 }

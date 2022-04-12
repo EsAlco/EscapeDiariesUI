@@ -14,6 +14,7 @@ struct ValuationView: View {
     @Binding var lineal: Int
     @Binding var recreation: Int
     @Binding var gameMaster: Int
+    @Binding var color: Color
     
     var body: some View {
         VStack{
@@ -21,47 +22,50 @@ struct ValuationView: View {
                 Text("Valoraciones:")
                     .font(.system(size: 17, weight: .black, design: .rounded))
                 Spacer()
-                Text("\(AverageRating()) / 5")
-                    .foregroundColor(.mint)
+                Text("\(String(format: "%.2f", AverageRating())) / 5")
+                    .foregroundColor(color)
                     .padding(.horizontal)
             }.padding(.horizontal)
                 .padding(.vertical, 2)
             HStack{
                 Text("Dificultdad:")
                 Spacer()
-                RatingView(selected: $difficulty)
+                RatingView(selected: $difficulty, color: $color)
             }.padding(.horizontal, 30)
             
             HStack{
                 Text("Linealidad:")
                 Spacer()
-                RatingView(selected: $lineal)
+                RatingView(selected: $lineal, color: $color)
             }.padding(.horizontal, 30)
             
             HStack{
                 Text("Ambientación:")
                 Spacer()
-                RatingView(selected: $recreation)
+                RatingView(selected: $recreation, color: $color)
             }.padding(.horizontal, 30)
             
             HStack{
                 Text("Game Master:")
                 Spacer()
-                RatingView(selected: $gameMaster)
+                RatingView(selected: $gameMaster, color: $color)
             }.padding(.horizontal, 30)
+        }
+        .onDisappear{
+            self.averageRating = AverageRating()
         }
     }
     
     // Puntuacion de la media de todas las valoraciones
-    func AverageRating() -> String{
+    func AverageRating() -> Double {
         let sumRating = difficulty + lineal + recreation + gameMaster
-        averageRating =  (Double(sumRating) + 4.0) / 4.0
-        return String(format: "%.2f", averageRating)
+        let averageRating =  (Double(sumRating) + 4.0) / 4.0
+        return averageRating
     }
 }
 
 struct ValuationView_Previews: PreviewProvider {
     static var previews: some View {
-        ValuationView(averageRating: .constant(3.75),difficulty: .constant(1), lineal: .constant(2), recreation: .constant(3), gameMaster: .constant(3))
+        ValuationView(averageRating: .constant(3.75), difficulty: .constant(1), lineal: .constant(2), recreation: .constant(3), gameMaster: .constant(3), color: .constant(.mint))
     }
 }
