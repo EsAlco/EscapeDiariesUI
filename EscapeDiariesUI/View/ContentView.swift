@@ -13,6 +13,8 @@ struct ContentView: View {
     @EnvironmentObject var escapeRoomFactory: EscapeRoomFactory
     @State private var selectedEscapeRoom: EscapeRoom?
     
+    @State private var searchText: String = ""
+    
     @State private var showFiltersView: Bool = false
     @State private var showNewEscapeRoom: Bool = false
     @State private var showAdjustmentsView: Bool = false
@@ -25,7 +27,9 @@ struct ContentView: View {
     var body: some View {
         NavigationView{
             List{
-                ForEach(escapeRoomFactory.escapeRooms.filter(shouldShowEscapeRoom), id: \.id){ escapeRoom in
+                ForEach(escapeRoomFactory.escapeRooms.filter(shouldShowEscapeRoom)
+                    .filter(searchResults),
+                        id: \.id){ escapeRoom in
                     ZStack{
                         EscapeRoomRow(escapeRoom: $escapeRoomFactory.escapeRooms[escapeRoom.id])
                             .contextMenu{
@@ -86,6 +90,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Busdcar Escape Room")
             .sheet(isPresented: $showAdjustmentsView){
                 AdjustmentsView(theme: $theme.theme)
             }
@@ -134,7 +139,16 @@ struct ContentView: View {
         let checkPast = (self.filtersFactory.past && escapeRoom.past) || !self.filtersFactory.past
         let checkFavorite = (self.filtersFactory.favorite && escapeRoom.featured) || !self.filtersFactory.favorite
         let checkPrice = (escapeRoom.averageRating <= self.filtersFactory.maxAverageRating)
-            return checkPast && checkFavorite && checkPrice
+        
+        return checkPast && checkFavorite && checkPrice
+    }
+    
+    private func searchResults(escapeRoom: EscapeRoom) -> Bool {
+        
+        if searchText.isEmpty {
+            return true
+        }
+           return escapeRoom.name.lowercased().contains(searchText.lowercased())
     }
     
     private func addEscapeRoom(){
