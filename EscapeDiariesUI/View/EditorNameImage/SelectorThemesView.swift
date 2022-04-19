@@ -79,36 +79,3 @@ struct SelectorThemesView_Previews: PreviewProvider {
         SelectorThemesView(color: .constant(.mint))
     }
 }
-/*
-struct CircleButtonView: View {
-    
-    @Binding var animation: Bool
-    @Binding var color: Color
-    @State var colorButton: Color
-    
-    var body: some View {
-        
-        ZStack {
-            Circle()
-                .foregroundColor(colorButton)
-                .frame(width: 70)
-                .onTapGesture {
-                    color = colorButton
-                    withAnimation(Animation.linear){
-                        animation.toggle()
-                    }
-            }
-            Circle()
-                .stroke(lineWidth: 9)
-                .foregroundColor(.gray)
-                .opacity(animation ? 0.5 : 0)
-                .frame(width: 80)
-        }.padding()
-    }
-}
-CircleButtonView(animation: $showAnimationMint, color: $color, colorButton: .mint)
-    
-CircleButtonView(animation: $showAnimationPink, color: $color, colorButton: .pink)
-
-CircleButtonView(animation: $showAnimationYellow, color: $color, colorButton: .yellow)
-*/

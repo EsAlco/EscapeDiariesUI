@@ -12,6 +12,8 @@
 		EB15E85727EB3D9300D0E982 /* FiltersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */; };
 		EB67D2CA2790E4EB00D70158 /* EscapeRoomFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2C92790E4EB00D70158 /* EscapeRoomFactory.swift */; };
 		EB67D2CC2790E51600D70158 /* EscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2CB2790E51600D70158 /* EscapeRoom.swift */; };
+		EB785F05280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB785F03280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld */; };
+		EB785F07280737CD00931CB3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB785F06280737CD00931CB3 /* Persistence.swift */; };
 		EB9542E427F315AE0083A1ED /* EscapeRoomRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E327F315AE0083A1ED /* EscapeRoomRow.swift */; };
 		EB9542E627F316F00083A1ED /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E527F316F00083A1ED /* DescriptionView.swift */; };
 		EB9542E827F318480083A1ED /* ValuationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E727F318480083A1ED /* ValuationView.swift */; };
@@ -37,6 +39,8 @@
 		EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersFactory.swift; sourceTree = "<group>"; };
 		EB67D2C92790E4EB00D70158 /* EscapeRoomFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoomFactory.swift; sourceTree = "<group>"; };
 		EB67D2CB2790E51600D70158 /* EscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoom.swift; sourceTree = "<group>"; };
+		EB785F04280737AB00931CB3 /* EscapeDiariesUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EscapeDiariesUI.xcdatamodel; sourceTree = "<group>"; };
+		EB785F06280737CD00931CB3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		EB9542E327F315AE0083A1ED /* EscapeRoomRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoomRow.swift; sourceTree = "<group>"; };
 		EB9542E527F316F00083A1ED /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		EB9542E727F318480083A1ED /* ValuationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuationView.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 			isa = PBXGroup;
 			children = (
 				EBD04226276ABFA900DFCC40 /* EscapeDiariesUIApp.swift */,
+				EB785F03280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld */,
+				EB785F06280737CD00931CB3 /* Persistence.swift */,
 				EB67D2CD2790E52000D70158 /* View */,
 				EB67D2C62790E4A100D70158 /* Modelo */,
 				EBD0422A276ABFAA00DFCC40 /* Assets.xcassets */,
@@ -242,8 +248,10 @@
 				EB9ED52A27F4725D00089FC5 /* Filters.swift in Sources */,
 				EBD04229276ABFA900DFCC40 /* ContentView.swift in Sources */,
 				EB15E85327EA30FD00D0E982 /* FiltersView.swift in Sources */,
+				EB785F07280737CD00931CB3 /* Persistence.swift in Sources */,
 				EBB285CF27E9F41700D1241D /* RatingView.swift in Sources */,
 				EB9ED53027F4AD4900089FC5 /* Themes.swift in Sources */,
+				EB785F05280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld in Sources */,
 				EB9ED52C27F49BB900089FC5 /* EditorNameImageView.swift in Sources */,
 				EB9542E627F316F00083A1ED /* DescriptionView.swift in Sources */,
 				EB15E85727EB3D9300D0E982 /* FiltersFactory.swift in Sources */,
@@ -453,6 +461,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		EB785F03280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				EB785F04280737AB00931CB3 /* EscapeDiariesUI.xcdatamodel */,
+			);
+			currentVersion = EB785F04280737AB00931CB3 /* EscapeDiariesUI.xcdatamodel */;
+			path = EscapeDiariesUI.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = EBD0421B276ABFA900DFCC40 /* Project object */;
 }

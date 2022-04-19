@@ -11,14 +11,28 @@ struct AdjustmentsView: View {
     
     @Binding var theme: Color
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
         
-        Form{
-            Section(header: Text("Selección de tema")){
-                SelectorThemesView(color: $theme)
+        NavigationView {
+            Form{
+                Section(header: Text("Selección de tema")){
+                    SelectorThemesView(color: $theme)
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button{
+                        self.presentationMode.wrappedValue.dismiss()
+                    }label: {
+                        Image(systemName: "xmark")
+                            .font(.headline)
+                            .foregroundColor(theme)
+                    }
+                }
             }
         }
-        
     }
 }
 

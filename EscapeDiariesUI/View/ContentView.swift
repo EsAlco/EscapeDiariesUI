@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import CoreData
 
 
 struct ContentView: View {
+    
+    @Environment(\.managedObjectContext) private var viewContext
     
     @EnvironmentObject var escapeRoomFactory: EscapeRoomFactory
     @State private var selectedEscapeRoom: EscapeRoom?
@@ -19,7 +22,9 @@ struct ContentView: View {
     @State private var showNewEscapeRoom: Bool = false
     @State private var showAdjustmentsView: Bool = false
     
-    @ObservedObject var filtersFactory = FiltersFactory()
+    @State var pastOnly: Bool
+    @State var favoriteOnly: Bool
+    @State var maxAverageRating: Double
     
     @ObservedObject var theme = Themes()
     
@@ -90,12 +95,12 @@ struct ContentView: View {
                     }
                 }
             }
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Busdcar Escape Room")
+            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
             .sheet(isPresented: $showAdjustmentsView){
                 AdjustmentsView(theme: $theme.theme)
             }
             .sheet(isPresented: $showFiltersView){
-                FiltersView(theme: $theme.theme)
+                FiltersView(theme: $theme.theme, showPastOnly: $pastOnly, showFavoriteOnly: $favoriteOnly, maxAverageRating: $maxAverageRating)
             }
             .sheet(isPresented: $showNewEscapeRoom){
                 let idx = escapeRoomFactory.escapeRooms.count - 1
@@ -112,6 +117,9 @@ struct ContentView: View {
                                      recreation: $escapeRoomFactory.escapeRooms[escapeRoom.id].recreation,
                                      gameMaster: $escapeRoomFactory.escapeRooms[escapeRoom.id].gameMaster,
                                      color: $escapeRoomFactory.escapeRooms[escapeRoom.id].color)
+            }
+            .onAppear{
+                
             }
         }
     
@@ -136,9 +144,9 @@ struct ContentView: View {
     }
     
     private func shouldShowEscapeRoom(escapeRoom: EscapeRoom) -> Bool {
-        let checkPast = (self.filtersFactory.past && escapeRoom.past) || !self.filtersFactory.past
-        let checkFavorite = (self.filtersFactory.favorite && escapeRoom.featured) || !self.filtersFactory.favorite
-        let checkPrice = (escapeRoom.averageRating <= self.filtersFactory.maxAverageRating)
+        let checkPast = (pastOnly && escapeRoom.past) || !pastOnly
+        let checkFavorite = (favoriteOnly && escapeRoom.featured) || !favoriteOnly
+        let checkPrice = (escapeRoom.averageRating <= maxAverageRating)
         
         return checkPast && checkFavorite && checkPrice
     }
@@ -162,7 +170,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environmentObject(EscapeRoomFactory())
+        ContentView(pastOnly: false, favoriteOnly: false, maxAverageRating: 5.0).environmentObject(EscapeRoomFactory())
     }
 }
 

@@ -9,14 +9,10 @@ import SwiftUI
 
 struct FiltersView: View {
     
-    @ObservedObject var filtersFactory = FiltersFactory()
-    
     @Binding var theme: Color
-    
-    @State private var showPastOnly = false
-    @State private var showFavoriteOnly = false
-    @State private var maxAverageRating = 5.0 {
-        
+    @Binding var showPastOnly: Bool
+    @Binding var showFavoriteOnly: Bool
+    @Binding var maxAverageRating: Double {
         didSet{
             if maxAverageRating > 5.0{
                 maxAverageRating = 5.0
@@ -26,6 +22,11 @@ struct FiltersView: View {
             }
         }
     }
+    
+    @AppStorage ("appStoragePastOnly") var appStoragePastOnly: Bool = false
+    @AppStorage ("appStorageFavoriteOnly") var appStorageFavoriteOnly: Bool = false
+    @AppStorage ("appStorageMaxAverageRating") var appStorageMaxAverageRating: Double = 5.0
+    
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -57,29 +58,29 @@ struct FiltersView: View {
                 ToolbarItem(placement: .navigationBarTrailing){
                     Button{
                         self.presentationMode.wrappedValue.dismiss()
+                        
+                        appStoragePastOnly = self.showPastOnly
+                        appStorageFavoriteOnly = self.showFavoriteOnly
+                        appStorageMaxAverageRating = self.maxAverageRating
                     }label: {
                         Image(systemName: "checkmark.circle")
                             .font(.title)
-                            .foregroundColor(.mint)
+                            .foregroundColor(theme)
                     }
                 }
             }
         }
-        .onAppear {
-            self.showPastOnly = self.filtersFactory.past
-            self.showFavoriteOnly = self.filtersFactory.favorite
-            self.maxAverageRating = self.filtersFactory.maxAverageRating
+        .onAppear{
+            self.showPastOnly = appStoragePastOnly
+            self.showFavoriteOnly = appStorageFavoriteOnly
+            self.maxAverageRating = appStorageMaxAverageRating
         }
-        .onDisappear{
-            self.filtersFactory.past = self.showPastOnly
-            self.filtersFactory.favorite = self.showFavoriteOnly
-            self.filtersFactory.maxAverageRating = self.maxAverageRating
-        }
+        
     }
 }
 
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FiltersView(filtersFactory: FiltersFactory(), theme: .constant(.mint))
+        FiltersView(theme: .constant(.mint), showPastOnly: .constant(false), showFavoriteOnly: .constant(false), maxAverageRating: .constant(5.0))
     }
 }
