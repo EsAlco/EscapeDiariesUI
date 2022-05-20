@@ -77,21 +77,15 @@ struct DetailViewEscapeRoom: View {
                     
                 }
             }
-            .navigationTitle(name)
+            //.navigationTitle(name)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button (action: {
-                        self.showEditor.toggle()
-                        
-                    }, label: {
-                        Text("Editar")
-                            .font(.headline)
-                            .foregroundColor(Color(red: red, green: green, blue: blue))
-                    })
+                    TextField("", text: $name)
+                        .font(.system(size: 40, weight: .bold, design: .rounded))
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+ 
                     Button (action: {
-                        
                         let values = EscapeRoomValues(
                             name: name,
                             image: image,
@@ -113,8 +107,10 @@ struct DetailViewEscapeRoom: View {
                             with: values,
                             in: managedObjectContext)
                         
+                        self.presentationMode.wrappedValue.dismiss()
+                    
                     }, label: {
-                        Image(systemName: "checkmark")
+                        Text("Guardar")
                             .font(.headline)
                             .foregroundColor(Color(red: red, green: green, blue: blue))
                     })
@@ -122,12 +118,12 @@ struct DetailViewEscapeRoom: View {
                     Button (action: {
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image(systemName: "xmark")
+                        Text("Cancel")
                             .font(.headline)
                             .foregroundColor(Color(red: red, green: green, blue: blue))
                     })
                 }
-            }
+            }/*
             .sheet(isPresented: $showEditor) {
                 EditorNameImageView(
                     name: name,
@@ -135,7 +131,7 @@ struct DetailViewEscapeRoom: View {
                     red: red,
                     green: green,
                     blue: blue)
-            }
+            }*/
             .onAppear {
                 guard
                     let objectId = escapeRoomId,

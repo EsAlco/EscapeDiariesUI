@@ -13,6 +13,8 @@ struct EditorNameImageView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment (\.presentationMode) var presentationMode
     
+    @ObservedObject var escapeRoom: EscapeRoom
+    
     @State var name: String = "Nombre"
     @State var image: String = "AddImage"
     @State var red: Double = 0.000
@@ -48,29 +50,52 @@ struct EditorNameImageView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button{
-                            
+                            if escapeRoomId == nil {
+                                let values = EscapeRoomValues(
+                                    name: name,
+                                    image: image,
+                                    averageRating: 0.00,
+                                    descriptionText: "",
+                                    difficulty: -1,
+                                    lineal: -1,
+                                    recreation: -1,
+                                    gameMaster: -1,
+                                    featured: false,
+                                    past: false,
+                                    datePast: Date.now,
+                                    red: red,
+                                    green: green,
+                                    blue: blue)
+                                
+                                viewModel.saveEscapeRoom(
+                                    escapeRoomId: escapeRoomId,
+                                    with: values,
+                                    in: managedObjectContext)
+                            } else {
                             let values = EscapeRoomValues(
                                 name: name,
                                 image: image,
-                                averageRating: 0.00,
-                                descriptionText: "",
-                                difficulty: -1,
-                                lineal: -1,
-                                recreation: -1,
-                                gameMaster: -1,
-                                featured: false,
-                                past: false,
-                                datePast: Date.now,
+                                averageRating: escapeRoom.averageRating,
+                                descriptionText: escapeRoom.descriptionText ?? "",
+                                difficulty: escapeRoom.difficulty,
+                                lineal: escapeRoom.lineal,
+                                recreation: escapeRoom.recreation,
+                                gameMaster: escapeRoom.gameMaster,
+                                featured: escapeRoom.featured,
+                                past: escapeRoom.past,
+                                datePast: escapeRoom.datePast ?? . now,
                                 red: red,
                                 green: green,
                                 blue: blue)
-
-                            viewModel.saveEscapeRoom(
-                                escapeRoomId: escapeRoomId,
-                                with: values,
-                                in: managedObjectContext)
+                                
+                                viewModel.saveEscapeRoom(
+                                    escapeRoomId: escapeRoomId,
+                                    with: values,
+                                    in: managedObjectContext)
+                            }
                             
                             self.presentationMode.wrappedValue.dismiss()
+                            
                         }label: {
                             Text("OK")
                                 .foregroundColor(Color(red: red, green: green, blue: blue))
@@ -93,6 +118,20 @@ struct EditorNameImageView: View {
 
 struct EditorNameImageView_Previews: PreviewProvider {
     static var previews: some View {
-        EditorNameImageView(red: 1.000, green: 0.186, blue: 0.573)
+        EditorNameImageView(escapeRoom: getEscapeRoom(), red: 1.000, green: 0.186, blue: 0.573)
+    }
+    static func getEscapeRoom() -> EscapeRoom {
+        let escapeRoom = EscapeRoom(context: CoreDataManager(inMemory: true).persistenceContainer.viewContext)
+        
+        escapeRoom.name = "La Nevera"
+        escapeRoom.image = "DaleAlCoco"
+        escapeRoom.averageRating = 4.5
+        escapeRoom.featured = true
+        escapeRoom.past = true
+        escapeRoom.red = 0.000
+        escapeRoom.green = 0.991
+        escapeRoom.blue = 1.000
+        
+        return escapeRoom
     }
 }

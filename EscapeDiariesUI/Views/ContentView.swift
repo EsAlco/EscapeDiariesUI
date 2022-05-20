@@ -25,6 +25,7 @@ struct ContentView: View {
     @State var showFiltersView: Bool = false
     @State var showNewEscapeRoom: Bool = false
     @State var showAdjustmentsView: Bool = false
+    @State var showEditEscapeRoom: Bool = false
     
     @State var pastOnly: Bool = false
     @State var featureOnly: Bool = false
@@ -59,8 +60,7 @@ struct ContentView: View {
                         } label: {
                             EscapeRoomRow(escapeRoom: escapeRoom)
                         }
-                    
-                            /*.contextMenu{
+                            .contextMenu{
                                 Button {
                                     self.setFeatured(item: escapeRoom)
                                 } label: {
@@ -74,25 +74,36 @@ struct ContentView: View {
                                 }
 
                                 Button(role: .destructive) {
-                                    self.removeEscapeRooms(att: escapeRooms.id)
+                                    self.removeEscapeRoom(escapeRoom)
                                 }label: {
                                     Label("Eliminar", systemImage: "trash")
                                 }
-                            }*/
+                            }
+                        .sheet(isPresented: $showNewEscapeRoom){
+                            EditorNameImageView(escapeRoom: escapeRoom)
+                        }
+                        .sheet(isPresented: $showEditEscapeRoom){
+                            EditorNameImageView(escapeRoom: escapeRoom)
+                        }
+                        
                 }
-                    .onDelete(perform: removeEscapeRooms)
+                .onDelete(perform: deleteEscapeRooms)
             }
-            .navigationBarTitle("Salas de Escape")
             .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
+            .navigationBarTitle("Salas de Escape")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
                     Button{
                         showAdjustmentsView.toggle()
                     } label: {
                         Image(systemName: "gear")
                             .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
                     }
+                    Button("Editar"){
+                        self.showEditEscapeRoom.toggle()
+                    }
+                    .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                
@@ -123,26 +134,31 @@ struct ContentView: View {
                     showFeaturedOnly: $featureOnly,
                     maxAverageRating: $maxAverageRating)
             }
-            .sheet(isPresented: $showNewEscapeRoom){
-                EditorNameImageView()
-            }
+
         }
     
     }
 
-    func setPast(item escapeRoom: EscapeRoom){
+    private func setPast(item escapeRoom: EscapeRoom){
         if let idx = escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
             escapeRooms[idx].past.toggle()
         }
     }
 
-    func setFeatured(item escapeRoom: EscapeRoom){
+    private func setFeatured(item escapeRoom: EscapeRoom){
         if let idx = escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
             escapeRooms[idx].featured.toggle()
         }
     }
 
-    func removeEscapeRooms(att offsets: IndexSet){
+    private func removeEscapeRoom(_ escapeRoom: EscapeRoom) {
+        withAnimation {
+            managedObjectContext.delete(escapeRoom)
+        }
+        CoreDataManager.shared.save()
+    }
+    
+    private func deleteEscapeRooms(att offsets: IndexSet){
         for index in offsets {
             let escapeRoom = escapeRooms[index]
             managedObjectContext.delete(escapeRoom)
@@ -150,7 +166,7 @@ struct ContentView: View {
         CoreDataManager.shared.save()
     }
     
-    func shouldShowEscapeRoom(escapeRoom: EscapeRoom) -> Bool {
+    private func shouldShowEscapeRoom(escapeRoom: EscapeRoom) -> Bool {
         let checkPast = (pastOnly && escapeRoom.past) || !pastOnly
         let checkFavorite = (featureOnly && escapeRoom.featured) || !featureOnly
         let checkPrice = (escapeRoom.averageRating <= maxAverageRating)
@@ -158,32 +174,12 @@ struct ContentView: View {
         return checkPast && checkFavorite && checkPrice
     }
     
-    func searchResults(escapeRoom: EscapeRoom) -> Bool {
+    private func searchResults(escapeRoom: EscapeRoom) -> Bool {
         
         if searchText.isEmpty {
             return true
         }
         return (((escapeRoom.name?.lowercased().contains(searchText.lowercased()))) != nil)
-    }
-    
-    func addEscapeRoom(){
-        withAnimation{
-            let newEscapeRoom = EscapeRoom(context: managedObjectContext)
-           
-            newEscapeRoom.name = "Nombre"
-            newEscapeRoom.image = "AddImage"
-            newEscapeRoom.averageRating = 0
-            newEscapeRoom.descriptionText = ""
-            newEscapeRoom.difficulty = -1
-            newEscapeRoom.lineal = -1
-            newEscapeRoom.recreation = -1
-            newEscapeRoom.gameMaster = -1
-            newEscapeRoom.red = 0.000
-            newEscapeRoom.green = 0.991
-            newEscapeRoom.blue = 1.00
-            
-            CoreDataManager.shared.save()
-        }
     }
 }
 
