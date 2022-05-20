@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		EB15E85327EA30FD00D0E982 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85227EA30FD00D0E982 /* FiltersView.swift */; };
-		EB15E85527EA706200D0E982 /* DetailFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85427EA706200D0E982 /* DetailFactory.swift */; };
 		EB15E85727EB3D9300D0E982 /* FiltersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */; };
-		EB67D2CA2790E4EB00D70158 /* EscapeRoomFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2C92790E4EB00D70158 /* EscapeRoomFactory.swift */; };
-		EB67D2CC2790E51600D70158 /* EscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2CB2790E51600D70158 /* EscapeRoom.swift */; };
-		EB785F05280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB785F03280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld */; };
-		EB785F07280737CD00931CB3 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB785F06280737CD00931CB3 /* Persistence.swift */; };
+		EB3D7F5B2832656000FBD3FA /* AddEscapeRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D7F5A2832656000FBD3FA /* AddEscapeRoomViewModel.swift */; };
+		EB67D2CA2790E4EB00D70158 /* EscapeRoomValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2C92790E4EB00D70158 /* EscapeRoomValues.swift */; };
+		EB76B85F2836B9C0008A1167 /* FeaturedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB76B85E2836B9C0008A1167 /* FeaturedView.swift */; };
+		EB76B8612836BAF8008A1167 /* PastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB76B8602836BAF8008A1167 /* PastView.swift */; };
+		EB8FBE5128295C470090D63A /* EscapeDiariesUI.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = EB8FBE4F28295C470090D63A /* EscapeDiariesUI.xcdatamodeld */; };
+		EB8FBE5328295C630090D63A /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB8FBE5228295C630090D63A /* CoreDataManager.swift */; };
+		EB8FBE5A282D6DA20090D63A /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB8FBE59282D6DA20090D63A /* Launch Screen.storyboard */; };
 		EB9542E427F315AE0083A1ED /* EscapeRoomRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E327F315AE0083A1ED /* EscapeRoomRow.swift */; };
 		EB9542E627F316F00083A1ED /* DescriptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E527F316F00083A1ED /* DescriptionView.swift */; };
 		EB9542E827F318480083A1ED /* ValuationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9542E727F318480083A1ED /* ValuationView.swift */; };
@@ -35,12 +37,14 @@
 
 /* Begin PBXFileReference section */
 		EB15E85227EA30FD00D0E982 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
-		EB15E85427EA706200D0E982 /* DetailFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailFactory.swift; sourceTree = "<group>"; };
 		EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersFactory.swift; sourceTree = "<group>"; };
-		EB67D2C92790E4EB00D70158 /* EscapeRoomFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoomFactory.swift; sourceTree = "<group>"; };
-		EB67D2CB2790E51600D70158 /* EscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoom.swift; sourceTree = "<group>"; };
-		EB785F04280737AB00931CB3 /* EscapeDiariesUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EscapeDiariesUI.xcdatamodel; sourceTree = "<group>"; };
-		EB785F06280737CD00931CB3 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		EB3D7F5A2832656000FBD3FA /* AddEscapeRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEscapeRoomViewModel.swift; sourceTree = "<group>"; };
+		EB67D2C92790E4EB00D70158 /* EscapeRoomValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoomValues.swift; sourceTree = "<group>"; };
+		EB76B85E2836B9C0008A1167 /* FeaturedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedView.swift; sourceTree = "<group>"; };
+		EB76B8602836BAF8008A1167 /* PastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastView.swift; sourceTree = "<group>"; };
+		EB8FBE5028295C470090D63A /* EscapeDiariesUI.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EscapeDiariesUI.xcdatamodel; sourceTree = "<group>"; };
+		EB8FBE5228295C630090D63A /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		EB8FBE59282D6DA20090D63A /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		EB9542E327F315AE0083A1ED /* EscapeRoomRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoomRow.swift; sourceTree = "<group>"; };
 		EB9542E527F316F00083A1ED /* DescriptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionView.swift; sourceTree = "<group>"; };
 		EB9542E727F318480083A1ED /* ValuationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuationView.swift; sourceTree = "<group>"; };
@@ -72,20 +76,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		EB67D2C62790E4A100D70158 /* Modelo */ = {
+		EB3D7F592832653A00FBD3FA /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				EB67D2C92790E4EB00D70158 /* EscapeRoomFactory.swift */,
-				EB67D2CB2790E51600D70158 /* EscapeRoom.swift */,
-				EB15E85427EA706200D0E982 /* DetailFactory.swift */,
+				EB3D7F5A2832656000FBD3FA /* AddEscapeRoomViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		EB67D2C62790E4A100D70158 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EB67D2C92790E4EB00D70158 /* EscapeRoomValues.swift */,
 				EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */,
 				EB9ED52927F4725D00089FC5 /* Filters.swift */,
 				EB9ED52F27F4AD4900089FC5 /* Themes.swift */,
 			);
-			path = Modelo;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		EB67D2CD2790E52000D70158 /* View */ = {
+		EB67D2CD2790E52000D70158 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				EBD04228276ABFA900DFCC40 /* ContentView.swift */,
@@ -94,7 +104,25 @@
 				EB9ED53527F59C6C00089FC5 /* DetailView */,
 				EB9ED53427F59C3100089FC5 /* EditorNameImage */,
 			);
-			path = View;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EB8FBE4E28295C0C0090D63A /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				EB8FBE5228295C630090D63A /* CoreDataManager.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		EB8FBE58282D6D680090D63A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				EB8FBE4F28295C470090D63A /* EscapeDiariesUI.xcdatamodeld */,
+				EBD0422A276ABFAA00DFCC40 /* Assets.xcassets */,
+				EB8FBE59282D6DA20090D63A /* Launch Screen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		EB9ED53427F59C3100089FC5 /* EditorNameImage */ = {
@@ -116,6 +144,8 @@
 				EB9542E527F316F00083A1ED /* DescriptionView.swift */,
 				EBB285CE27E9F41700D1241D /* RatingView.swift */,
 				EB9542E727F318480083A1ED /* ValuationView.swift */,
+				EB76B85E2836B9C0008A1167 /* FeaturedView.swift */,
+				EB76B8602836BAF8008A1167 /* PastView.swift */,
 			);
 			path = DetailView;
 			sourceTree = "<group>";
@@ -149,11 +179,11 @@
 			isa = PBXGroup;
 			children = (
 				EBD04226276ABFA900DFCC40 /* EscapeDiariesUIApp.swift */,
-				EB785F03280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld */,
-				EB785F06280737CD00931CB3 /* Persistence.swift */,
-				EB67D2CD2790E52000D70158 /* View */,
-				EB67D2C62790E4A100D70158 /* Modelo */,
-				EBD0422A276ABFAA00DFCC40 /* Assets.xcassets */,
+				EB67D2CD2790E52000D70158 /* Views */,
+				EB3D7F592832653A00FBD3FA /* ViewModels */,
+				EB67D2C62790E4A100D70158 /* Model */,
+				EB8FBE4E28295C0C0090D63A /* Persistence */,
+				EB8FBE58282D6D680090D63A /* Resources */,
 				EBD0422C276ABFAA00DFCC40 /* Preview Content */,
 			);
 			path = EscapeDiariesUI;
@@ -225,6 +255,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB8FBE5A282D6DA20090D63A /* Launch Screen.storyboard in Resources */,
 				EBD0422E276ABFAA00DFCC40 /* Preview Assets.xcassets in Resources */,
 				EBD0422B276ABFAA00DFCC40 /* Assets.xcassets in Resources */,
 			);
@@ -237,25 +268,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB76B8612836BAF8008A1167 /* PastView.swift in Sources */,
 				EB9ED52E27F4AB1F00089FC5 /* SelectorThemesView.swift in Sources */,
 				EB9542EA27F319BB0083A1ED /* NameView.swift in Sources */,
-				EB67D2CC2790E51600D70158 /* EscapeRoom.swift in Sources */,
-				EB15E85527EA706200D0E982 /* DetailFactory.swift in Sources */,
+				EB8FBE5128295C470090D63A /* EscapeDiariesUI.xcdatamodeld in Sources */,
 				EB9542E427F315AE0083A1ED /* EscapeRoomRow.swift in Sources */,
 				EB9ED53827F70F8800089FC5 /* AdjustmentsView.swift in Sources */,
-				EB67D2CA2790E4EB00D70158 /* EscapeRoomFactory.swift in Sources */,
+				EB67D2CA2790E4EB00D70158 /* EscapeRoomValues.swift in Sources */,
 				EB9542E827F318480083A1ED /* ValuationView.swift in Sources */,
 				EB9ED52A27F4725D00089FC5 /* Filters.swift in Sources */,
 				EBD04229276ABFA900DFCC40 /* ContentView.swift in Sources */,
 				EB15E85327EA30FD00D0E982 /* FiltersView.swift in Sources */,
-				EB785F07280737CD00931CB3 /* Persistence.swift in Sources */,
 				EBB285CF27E9F41700D1241D /* RatingView.swift in Sources */,
 				EB9ED53027F4AD4900089FC5 /* Themes.swift in Sources */,
-				EB785F05280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld in Sources */,
+				EB8FBE5328295C630090D63A /* CoreDataManager.swift in Sources */,
 				EB9ED52C27F49BB900089FC5 /* EditorNameImageView.swift in Sources */,
 				EB9542E627F316F00083A1ED /* DescriptionView.swift in Sources */,
 				EB15E85727EB3D9300D0E982 /* FiltersFactory.swift in Sources */,
+				EB3D7F5B2832656000FBD3FA /* AddEscapeRoomViewModel.swift in Sources */,
 				EBD04227276ABFA900DFCC40 /* EscapeDiariesUIApp.swift in Sources */,
+				EB76B85F2836B9C0008A1167 /* FeaturedView.swift in Sources */,
 				EB9542EC27F319C70083A1ED /* ImageView.swift in Sources */,
 				EBC34FD227722C060064E4E0 /* DetailViewEscapeRoom.swift in Sources */,
 				EB9ED53327F4B0EF00089FC5 /* SelectorImagesView.swift in Sources */,
@@ -397,6 +429,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -426,6 +459,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -463,12 +497,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		EB785F03280737AB00931CB3 /* EscapeDiariesUI.xcdatamodeld */ = {
+		EB8FBE4F28295C470090D63A /* EscapeDiariesUI.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				EB785F04280737AB00931CB3 /* EscapeDiariesUI.xcdatamodel */,
+				EB8FBE5028295C470090D63A /* EscapeDiariesUI.xcdatamodel */,
 			);
-			currentVersion = EB785F04280737AB00931CB3 /* EscapeDiariesUI.xcdatamodel */;
+			currentVersion = EB8FBE5028295C470090D63A /* EscapeDiariesUI.xcdatamodel */;
 			path = EscapeDiariesUI.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -10,11 +10,14 @@ import SwiftUI
 @main
 struct EscapeDiariesUIApp: App {
     
+    let persistenceController = CoreDataManager.shared
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(pastOnly: false, favoriteOnly: false, maxAverageRating: 5.0).environmentObject(EscapeRoomFactory())
-                
-                
+            ContentView()
+                .environment(\.managedObjectContext,persistenceController.persistenceContainer.viewContext)
         }
     }
 }
+
+
