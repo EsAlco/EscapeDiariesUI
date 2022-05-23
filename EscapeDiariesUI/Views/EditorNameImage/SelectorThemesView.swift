@@ -23,9 +23,9 @@ struct SelectorThemesView: View {
                 Circle()
                     .foregroundColor(.mint)
                     .onTapGesture {
-                        red = 0.000
-                        green = 0.991
-                        blue = 1.000
+                        red = 0.529
+                        green = 0.890
+                        blue = 0.882
                         
                         withAnimation(Animation.linear){
                             showAnimationMint = true
@@ -44,9 +44,9 @@ struct SelectorThemesView: View {
                 Circle()
                     .foregroundColor(.pink)
                     .onTapGesture {
-                        red = 1.000
-                        green = 0.186
-                        blue = 0.573
+                        red = 0.986
+                        green = 0.102
+                        blue = 0.302
                        
                         withAnimation(Animation.linear){
                             showAnimationMint = false
@@ -65,9 +65,9 @@ struct SelectorThemesView: View {
                 Circle()
                     .foregroundColor(.yellow)
                     .onTapGesture {
-                        red = 0.999
-                        green = 0.986
-                        blue = 0.000
+                        red = 0.996
+                        green = 0.813
+                        blue = 0.057
                         
                         withAnimation(Animation.linear){
                             showAnimationMint = false

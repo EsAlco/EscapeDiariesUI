@@ -1,14 +1,14 @@
 //
-//  FilterFactory.swift
+//  ThemesFactory.swift
 //  EscapeDiariesUI
 //
-//  Created by Esther Alcoceba Gutiérrez de León on 23/3/22.
+//  Created by Esther Alcoceba Gutiérrez de León on 23/5/22.
 //
 
 import Foundation
-import Combine
 
-final class FiltersFactory: ObservableObject {
+
+final class ThemesFactory: ObservableObject {
     
     @Published var pastOnly: Bool = UserDefaults.standard.bool(forKey: "pastOnly"){
         didSet {
@@ -22,7 +22,7 @@ final class FiltersFactory: ObservableObject {
         }
     }
     
-    @Published var maxAverageRating: Double = UserDefaults.standard.double(forKey: "maxAverageRating"){
+    @Published var maxAverageRating: Bool = UserDefaults.standard.bool(forKey: "maxAverageRating"){
         didSet {
             UserDefaults.standard.set(self.maxAverageRating, forKey: "maxAverageRating")
         }

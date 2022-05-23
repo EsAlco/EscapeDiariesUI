@@ -10,7 +10,25 @@ import SwiftUI
 
 final class Themes: ObservableObject {
     
-    @Published var redTheme: Double = 0.000
-    @Published var greenTheme: Double = 0.991
-    @Published var blueTheme: Double = 1.000
+    @Published var redTheme: Double = UserDefaults.standard.double(forKey: "redTheme"){
+        didSet {
+            UserDefaults.standard.set(self.redTheme, forKey: "redTheme")
+        }
+    }
+
+    @Published var greenTheme: Double = UserDefaults.standard.double(forKey: "greenTheme"){
+        didSet {
+            UserDefaults.standard.set(self.redTheme, forKey: "greenTheme")
+        }
+    }
+    @Published var blueTheme: Double = UserDefaults.standard.double(forKey: "blueTheme"){
+        didSet {
+            UserDefaults.standard.set(self.redTheme, forKey: "blueTheme")
+        }
+    }
 }
+
+    
+    
+    
+    

@@ -30,7 +30,11 @@ struct ContentView: View {
     @State var featureOnly: Bool = false
     @State var maxAverageRating: Double = 5.0
     
-    @ObservedObject var theme = Themes()
+    @State var redTheme: Double = 0.338
+    @State var greenTheme: Double = 0.887
+    @State var blueTheme: Double = 0.858
+    
+  //  @ObservedObject var theme = Themes()
     
     
     var body: some View {
@@ -47,13 +51,13 @@ struct ContentView: View {
                                 Button {
                                     self.setFeatured(item: escapeRoom)
                                 } label: {
-                                    Label("Favorito", systemImage: "star")
+                                    Label("Favorito", systemImage: "heart")
                                 }
 
                                 Button {
                                     self.setPast(item: escapeRoom)
                                 } label: {
-                                    Label("Pasado",systemImage: "checkmark.circle")
+                                    Label("Pasado", systemImage: "checkmark.circle")
                                 }
 
                                 Button(role: .destructive) {
@@ -66,7 +70,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteEscapeRooms)
             }
-            .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
+            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
             .navigationBarTitle("Salas de Escape")
             .toolbar {
@@ -75,7 +79,7 @@ struct ContentView: View {
                         showAdjustmentsView.toggle()
                     } label: {
                         Image(systemName: "gear")
-                            .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
+                            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing){
@@ -84,14 +88,14 @@ struct ContentView: View {
                         showFiltersView = true
                     }label: {
                         Image(systemName: "slider.horizontal.3")
-                            .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
+                            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
                     }
                     
                     Button{
                         self.showNewEscapeRoom.toggle()
                     }label: {
                         Image(systemName: "plus")
-                            .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
+                            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
                     }
                 }
             }
@@ -117,13 +121,13 @@ struct ContentView: View {
                 EditorNameImageView()
             }
             .sheet(isPresented: $showAdjustmentsView){
-                AdjustmentsView()
+                AdjustmentsView(redTheme: $redTheme, greenTheme: $greenTheme, blueTheme: $blueTheme)
             }
             .sheet(isPresented: $showFiltersView){
                 FiltersView(
-                    redTheme: $theme.redTheme,
-                    greenTheme: $theme.greenTheme,
-                    blueTheme: $theme.blueTheme,
+                    redTheme: $redTheme,
+                    greenTheme: $greenTheme,
+                    blueTheme: $blueTheme,
                     showPastOnly: $pastOnly,
                     showFeaturedOnly: $featureOnly,
                     maxAverageRating: $maxAverageRating)
@@ -142,6 +146,7 @@ struct ContentView: View {
     private func setFeatured(item escapeRoom: EscapeRoom){
         if let idx = escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
             escapeRooms[idx].featured.toggle()
+        
         }
     }
 
