@@ -11,6 +11,8 @@ struct SelectorImagesView: View {
     
     @Binding var image: String
     
+    @State var showAnimationImage = false
+    
     var body: some View {
         HStack{
             VStack{
@@ -24,6 +26,8 @@ struct SelectorImagesView: View {
                             self.image = "DaleAlCoco"
                         }
                 }
+                
+            
                 withAnimation {
                     Image("FoxInABox")
                         .resizable()

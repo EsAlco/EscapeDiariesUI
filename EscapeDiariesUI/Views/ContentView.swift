@@ -25,7 +25,6 @@ struct ContentView: View {
     @State var showFiltersView: Bool = false
     @State var showNewEscapeRoom: Bool = false
     @State var showAdjustmentsView: Bool = false
-    @State var showEditEscapeRoom: Bool = false
     
     @State var pastOnly: Bool = false
     @State var featureOnly: Bool = false
@@ -40,26 +39,10 @@ struct ContentView: View {
                 ForEach(
                     escapeRooms.filter(shouldShowEscapeRoom).filter(searchResults),
                     id: \.id){ escapeRoom in
-                        NavigationLink{
-                            DetailViewEscapeRoom(
-                                name: escapeRoom.name ?? "",
-                                image: escapeRoom.image ?? "AddImage",
-                                descriptionText: escapeRoom.descriptionText ?? "",
-                                averageRating: escapeRoom.averageRating,
-                                difficulty: escapeRoom.difficulty,
-                                lineal: escapeRoom.lineal,
-                                recreation: escapeRoom.recreation,
-                                gameMaster: escapeRoom.gameMaster,
-                                featured: escapeRoom.featured,
-                                past: escapeRoom.past,
-                                datePast: escapeRoom.datePast ?? .now,
-                                red: escapeRoom.red,
-                                green: escapeRoom.green,
-                                blue: escapeRoom.blue,
-                                escapeRoomId: escapeRoom.objectID)
-                        } label: {
-                            EscapeRoomRow(escapeRoom: escapeRoom)
-                        }
+                        EscapeRoomRow(escapeRoom: escapeRoom)
+                            .onTapGesture{
+                                self.selectedEscapeRoom = escapeRoom
+                            }
                             .contextMenu{
                                 Button {
                                     self.setFeatured(item: escapeRoom)
@@ -79,12 +62,6 @@ struct ContentView: View {
                                     Label("Eliminar", systemImage: "trash")
                                 }
                             }
-                        .sheet(isPresented: $showNewEscapeRoom){
-                            EditorNameImageView(escapeRoom: escapeRoom)
-                        }
-                        .sheet(isPresented: $showEditEscapeRoom){
-                            EditorNameImageView(escapeRoom: escapeRoom)
-                        }
                         
                 }
                 .onDelete(perform: deleteEscapeRooms)
@@ -93,17 +70,13 @@ struct ContentView: View {
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
             .navigationBarTitle("Salas de Escape")
             .toolbar {
-                ToolbarItemGroup(placement: .navigationBarLeading) {
+                ToolbarItem(placement: .navigationBarLeading) {
                     Button{
                         showAdjustmentsView.toggle()
                     } label: {
                         Image(systemName: "gear")
                             .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
                     }
-                    Button("Editar"){
-                        self.showEditEscapeRoom.toggle()
-                    }
-                    .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing){
                
@@ -121,6 +94,27 @@ struct ContentView: View {
                             .foregroundColor(Color(red: theme.redTheme, green: theme.greenTheme, blue: theme.blueTheme))
                     }
                 }
+            }
+            .sheet(item: $selectedEscapeRoom){ escapeRoom in
+                DetailViewEscapeRoom(
+                    name: escapeRoom.name ?? "",
+                    image: escapeRoom.image ?? "AddImage",
+                    descriptionText: escapeRoom.descriptionText ?? "",
+                    averageRating: escapeRoom.averageRating,
+                    difficulty: escapeRoom.difficulty,
+                    lineal: escapeRoom.lineal,
+                    recreation: escapeRoom.recreation,
+                    gameMaster: escapeRoom.gameMaster,
+                    featured: escapeRoom.featured,
+                    past: escapeRoom.past,
+                    datePast: escapeRoom.datePast ?? .now,
+                    red: escapeRoom.red,
+                    green: escapeRoom.green,
+                    blue: escapeRoom.blue,
+                    escapeRoomId: escapeRoom.objectID)
+            }
+            .sheet(isPresented: $showNewEscapeRoom){
+                EditorNameImageView()
             }
             .sheet(isPresented: $showAdjustmentsView){
                 AdjustmentsView()

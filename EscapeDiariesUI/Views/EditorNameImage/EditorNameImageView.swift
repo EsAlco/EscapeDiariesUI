@@ -13,7 +13,7 @@ struct EditorNameImageView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment (\.presentationMode) var presentationMode
     
-    @ObservedObject var escapeRoom: EscapeRoom
+    //@ObservedObject var escapeRoom: EscapeRoom
     
     @State var name: String = "Nombre"
     @State var image: String = "AddImage"
@@ -50,7 +50,7 @@ struct EditorNameImageView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button{
-                            if escapeRoomId == nil {
+                           // if escapeRoomId == nil {
                                 let values = EscapeRoomValues(
                                     name: name,
                                     image: image,
@@ -71,19 +71,20 @@ struct EditorNameImageView: View {
                                     escapeRoomId: escapeRoomId,
                                     with: values,
                                     in: managedObjectContext)
+                                /*
                             } else {
                             let values = EscapeRoomValues(
                                 name: name,
                                 image: image,
-                                averageRating: escapeRoom.averageRating,
-                                descriptionText: escapeRoom.descriptionText ?? "",
-                                difficulty: escapeRoom.difficulty,
-                                lineal: escapeRoom.lineal,
-                                recreation: escapeRoom.recreation,
-                                gameMaster: escapeRoom.gameMaster,
-                                featured: escapeRoom.featured,
-                                past: escapeRoom.past,
-                                datePast: escapeRoom.datePast ?? . now,
+                                averageRating: escapeRoomId.averageRating,
+                                descriptionText: escapeRoomId.descriptionText ?? "",
+                                difficulty: escapeRoomId.difficulty,
+                                lineal: escapeRoomId.lineal,
+                                recreation: escapeRoomId.recreation,
+                                gameMaster: escapeRoomId.gameMaster,
+                                featured: escapeRoomId.featured,
+                                past: escapeRoomId.past,
+                                datePast: escapeRoomId.datePast ?? . now,
                                 red: red,
                                 green: green,
                                 blue: blue)
@@ -92,7 +93,7 @@ struct EditorNameImageView: View {
                                     escapeRoomId: escapeRoomId,
                                     with: values,
                                     in: managedObjectContext)
-                            }
+                            }*/
                             
                             self.presentationMode.wrappedValue.dismiss()
                             
@@ -118,7 +119,8 @@ struct EditorNameImageView: View {
 
 struct EditorNameImageView_Previews: PreviewProvider {
     static var previews: some View {
-        EditorNameImageView(escapeRoom: getEscapeRoom(), red: 1.000, green: 0.186, blue: 0.573)
+        EditorNameImageView(//escapeRoom: getEscapeRoom(),
+            red: 1.000, green: 0.186, blue: 0.573)
     }
     static func getEscapeRoom() -> EscapeRoom {
         let escapeRoom = EscapeRoom(context: CoreDataManager(inMemory: true).persistenceContainer.viewContext)

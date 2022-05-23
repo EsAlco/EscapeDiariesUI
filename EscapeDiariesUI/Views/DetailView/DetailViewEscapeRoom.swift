@@ -30,7 +30,7 @@ struct DetailViewEscapeRoom: View {
     @State var green: Double
     @State var blue: Double
     
-    @State var showEditor: Bool = false
+    @State var showEditorImage: Bool = false
     @State var isPast: Bool = false
     
     var escapeRoomId: NSManagedObjectID?
@@ -44,6 +44,10 @@ struct DetailViewEscapeRoom: View {
                     ImageView(
                         image: $image
                     )
+                    .onTapGesture {
+                        self.showEditorImage.toggle()
+                    }
+                    
                     FeaturedView(
                         red: $red,
                         green: $green,
@@ -77,7 +81,6 @@ struct DetailViewEscapeRoom: View {
                     
                 }
             }
-            //.navigationTitle(name)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     TextField("", text: $name)
@@ -123,15 +126,13 @@ struct DetailViewEscapeRoom: View {
                             .foregroundColor(Color(red: red, green: green, blue: blue))
                     })
                 }
-            }/*
-            .sheet(isPresented: $showEditor) {
-                EditorNameImageView(
-                    name: name,
-                    image: image,
-                    red: red,
-                    green: green,
-                    blue: blue)
-            }*/
+            }
+            .sheet(isPresented: $showEditorImage) {
+                SelectorImagesView(image: $image)
+                    
+                    
+                    
+            }
             .onAppear {
                 guard
                     let objectId = escapeRoomId,
