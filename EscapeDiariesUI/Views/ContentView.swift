@@ -34,8 +34,6 @@ struct ContentView: View {
     @State var greenTheme: Double = 0.887
     @State var blueTheme: Double = 0.858
     
-  //  @ObservedObject var theme = Themes()
-    
     
     var body: some View {
         NavigationView{
