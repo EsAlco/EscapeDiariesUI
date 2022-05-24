@@ -22,33 +22,42 @@ struct AdjustmentsView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
+        UITableView.appearance().backgroundColor = .clear
         
-        NavigationView {
-            Form{
-                Section(header: Text("Selección de tema")){
-                    SelectorThemesView(red: $redTheme, green: $greenTheme, blue: $blueTheme)
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancelar"){
-                        self.presentationMode.wrappedValue.dismiss()
+        return NavigationView {
+            ZStack{
+                Image("EscapeDiariesUI")
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(0.2)
+                Form{
+                    Section(header: Text("Selección de tema")){
+                        SelectorThemesView(red: $redTheme, green: $greenTheme, blue: $blueTheme)
                     }
-                    .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
-                }
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button("OK"){
-                        self.presentationMode.wrappedValue.dismiss()
-                        
-                        appStorageRedTheme = self.redTheme
-                        appStorageGreenTheme = self.greenTheme
-                        appStorageBlueTheme = self.blueTheme
+                    .listRowBackground(Color.clear)
+                }   
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Cancelar"){
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                        .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button("OK"){
+                            self.presentationMode.wrappedValue.dismiss()
+                            
+                            appStorageRedTheme = self.redTheme
+                            appStorageGreenTheme = self.greenTheme
+                            appStorageBlueTheme = self.blueTheme
+                            
+                        }
+                        .font(.title2)
+                        .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
                         
                     }
-                    .font(.title2)
-                    .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
-                    
                 }
+                
             }
         }
         .onAppear{

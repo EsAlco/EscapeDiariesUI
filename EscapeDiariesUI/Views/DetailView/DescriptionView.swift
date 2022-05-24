@@ -21,18 +21,21 @@ struct DescriptionView: View {
                     .font(.system(size: 17, weight: .black, design: .rounded))
                 Spacer()
             }
-            
             TextEditor(text: $descriptionText)
+                .opacity(0.5)
                 .font(.system(size: 14, weight: .bold, design: .rounded))
                 .frame(minHeight: 100)
                 .padding(7)
-                .background(
-                    Color(
-                        red: red == 0.338 ? 0.720 : red == 0.986 ? 0.992 : 1.00,
-                        green: green == 0.887 ? 1.000 : green == 0.102 ? 0.823 : 0.971,
-                        blue: blue == 0.858 ? 0.993 : blue == 0.302 ? 0.884 : 0.707
-                    ))
-                .cornerRadius(8)
+                .cornerRadius(9)
+                .overlay {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(lineWidth: 6)
+                        .foregroundColor(Color(
+                            red: red == 0.338 ? 0.720 : red == 0.986 ? 0.992 : 1.00,
+                            green: green == 0.887 ? 1.000 : green == 0.102 ? 0.823 : 0.971,
+                            blue: blue == 0.858 ? 0.993 : blue == 0.302 ? 0.884 : 0.707
+                        ))
+                }
         }
     }
 }

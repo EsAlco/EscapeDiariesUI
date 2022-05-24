@@ -34,49 +34,59 @@ struct FiltersView: View {
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
-        NavigationView{
-            Form{
-                Section(header: Text("")){
-                    Toggle("Sólo realizados", isOn: $showPastOnly)
-                        .toggleStyle(SwitchToggleStyle(tint: Color(red: redTheme, green: greenTheme, blue: blueTheme)))
-                    
-                    Toggle("Sólo favoritos", isOn: $showFeaturedOnly)
-                        .toggleStyle(SwitchToggleStyle(tint: Color(red: redTheme, green: greenTheme, blue: blueTheme)))
-                    
-                    HStack {
-                        Text("Mostrar \(String(maxAverageRating)) o menos puntuación")
-                        Spacer()
-                        Stepper("", onIncrement: {
-                            self.maxAverageRating += 1.0
-                        }, onDecrement: {
-                            self.maxAverageRating -= 1.0
-                        }).labelsHidden()
-                            .background(Color(red: redTheme, green: greenTheme, blue: blueTheme))
-                            .cornerRadius(8)
-                    }
-                }
-            }
-            .navigationTitle("Filtros")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancelar"){
-                        self.presentationMode.wrappedValue.dismiss()
-                    }
-                    .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
-                }
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button("OK"){
-                        self.presentationMode.wrappedValue.dismiss()
+        UITableView.appearance().backgroundColor = .clear
+        
+        return NavigationView{
+            ZStack{
+                Image("EscapeDiariesUI")
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(0.2)
+                Form{
+                    Section(header: Text("")){
+                        Toggle("Sólo realizados", isOn: $showPastOnly)
+                            .toggleStyle(SwitchToggleStyle(tint: Color(red: redTheme, green: greenTheme, blue: blueTheme)))
                         
-                        appStoragePastOnly = self.showPastOnly
-                        appStorageFeatureOnly = self.showFeaturedOnly
-                        appStorageMaxAverageRating = self.maxAverageRating
+                        Toggle("Sólo favoritos", isOn: $showFeaturedOnly)
+                            .toggleStyle(SwitchToggleStyle(tint: Color(red: redTheme, green: greenTheme, blue: blueTheme)))
+                        
+                        HStack {
+                            Text("Mostrar \(String(maxAverageRating)) o menos puntuación")
+                            Spacer()
+                            Stepper("", onIncrement: {
+                                self.maxAverageRating += 1.0
+                            }, onDecrement: {
+                                self.maxAverageRating -= 1.0
+                            }).labelsHidden()
+                                .background(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                                .cornerRadius(8)
+                        }
                     }
-                    .font(.title2)
-                    .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                    .listRowBackground(Color.clear)
+                }
+                .navigationTitle("Filtros")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Cancelar"){
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                        .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button("OK"){
+                            self.presentationMode.wrappedValue.dismiss()
+                            
+                            appStoragePastOnly = self.showPastOnly
+                            appStorageFeatureOnly = self.showFeaturedOnly
+                            appStorageMaxAverageRating = self.maxAverageRating
+                        }
+                        .font(.title2)
+                        .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
 
+                    }
                 }
             }
+            
         }
         .onAppear{
             self.showPastOnly = appStoragePastOnly

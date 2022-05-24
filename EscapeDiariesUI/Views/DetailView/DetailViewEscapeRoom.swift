@@ -41,45 +41,52 @@ struct DetailViewEscapeRoom: View {
             ZStack {
                 NavigationView{
                     ScrollView{
-                        VStack{
-                            ImageView(
-                                image: $image)
-                            .onTapGesture {
-                                self.showEditorImage = true
-                            }
-                            .overlay{
-                                FeaturedView(
+                        ZStack{
+                            Image(image)
+                                .resizable()
+                                .scaledToFit()
+                                .opacity(0.2)
+                            VStack{
+                                ImageView(
+                                    image: $image)
+                                .onTapGesture {
+                                    self.showEditorImage = true
+                                }
+                                .overlay{
+                                    FeaturedView(
+                                        red: $red,
+                                        green: $green,
+                                        blue: $blue,
+                                        isFeatured: $featured,
+                                        isPast: $past)
+                                    .offset(x: geometry.size.width * 0.3, y: geometry.size.height * 0.23)
+                                }
+                                
+                                DescriptionView(
+                                    descriptionText: $descriptionText,
+                                    red: $red,
+                                    green: $green,
+                                    blue: $blue)
+                                
+                                ValuationView(
+                                    averageRating: $averageRating,
+                                    difficulty: $difficulty,
+                                    lineal: $lineal,
+                                    recreation: $recreation,
+                                    gameMaster: $gameMaster,
+                                    red: $red,
+                                    green: $green,
+                                    blue: $blue)
+                                
+                                PastView(
                                     red: $red,
                                     green: $green,
                                     blue: $blue,
-                                    isFeatured: $featured,
+                                    datePast: $datePast,
                                     isPast: $past)
-                                .offset(x: geometry.size.width * 0.3, y: geometry.size.height * 0.23)
                             }
-                            
-                            DescriptionView(
-                                descriptionText: $descriptionText,
-                                red: $red,
-                                green: $green,
-                                blue: $blue)
-                            
-                            ValuationView(
-                                averageRating: $averageRating,
-                                difficulty: $difficulty,
-                                lineal: $lineal,
-                                recreation: $recreation,
-                                gameMaster: $gameMaster,
-                                red: $red,
-                                green: $green,
-                                blue: $blue)
-                            
-                            PastView(
-                                red: $red,
-                                green: $green,
-                                blue: $blue,
-                                datePast: $datePast,
-                                isPast: $past)
                         }
+                        
                     }
                     .frame(width: geometry.size.width * 0.9)
                     .toolbar {
@@ -97,6 +104,7 @@ struct DetailViewEscapeRoom: View {
                                 .frame(maxWidth: geometry.size.width * 0.5)
                                 .foregroundColor(Color(red: red, green: green, blue: blue))
                                 .multilineTextAlignment(.center)
+                                .minimumScaleFactor(0.5)
                         }
                         
                         ToolbarItem(placement: .navigationBarTrailing) {
@@ -168,6 +176,8 @@ struct DetailViewEscapeRoom: View {
                     ModalSelectorImagesView(image: $image)
                         .transition(.move(edge: .bottom))
                 }
+            
+                
             }
         }
     }

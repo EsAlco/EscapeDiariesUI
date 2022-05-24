@@ -36,8 +36,17 @@ struct ContentView: View {
     
     
     var body: some View {
-        NavigationView{
-            List{
+        
+        UITableView.appearance().backgroundColor = .clear
+        UITableViewCell.appearance().backgroundColor = .clear
+        
+        return NavigationView{
+            ZStack{
+                Image("EscapeDiariesUI")
+                        .resizable()
+                        .scaledToFit()
+                        .opacity(0.2)
+                List{
                 ForEach(
                     escapeRooms.filter(shouldShowEscapeRoom).filter(searchResults),
                     id: \.id){ escapeRoom in
@@ -70,70 +79,69 @@ struct ContentView: View {
                 .onDelete(perform: deleteEscapeRooms)
             }
             
-            .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
-            .navigationBarTitle("Salas de Escape")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button{
-                        showAdjustmentsView.toggle()
-                    } label: {
-                        Image(systemName: "gear")
-                            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
+                .navigationBarTitle("Salas de Escape")
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button{
+                            showAdjustmentsView.toggle()
+                        } label: {
+                            Image(systemName: "gear")
+                                .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                        }
+                    }
+                    ToolbarItemGroup(placement: .navigationBarTrailing){
+                   
+                        Button{
+                            showFiltersView = true
+                        }label: {
+                            Image(systemName: "slider.horizontal.3")
+                                .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                        }
+                        
+                        Button{
+                            self.showNewEscapeRoom.toggle()
+                        }label: {
+                            Image(systemName: "plus")
+                                .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                        }
                     }
                 }
-                ToolbarItemGroup(placement: .navigationBarTrailing){
-               
-                    Button{
-                        showFiltersView = true
-                    }label: {
-                        Image(systemName: "slider.horizontal.3")
-                            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
-                    }
-                    
-                    Button{
-                        self.showNewEscapeRoom.toggle()
-                    }label: {
-                        Image(systemName: "plus")
-                            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
-                    }
+                .sheet(item: $selectedEscapeRoom){ escapeRoom in
+                    DetailViewEscapeRoom(
+                        name: escapeRoom.name ?? "",
+                        image: escapeRoom.image ?? "AddImage",
+                        descriptionText: escapeRoom.descriptionText ?? "",
+                        averageRating: escapeRoom.averageRating,
+                        difficulty: escapeRoom.difficulty,
+                        lineal: escapeRoom.lineal,
+                        recreation: escapeRoom.recreation,
+                        gameMaster: escapeRoom.gameMaster,
+                        featured: escapeRoom.featured,
+                        past: escapeRoom.past,
+                        datePast: escapeRoom.datePast ?? .now,
+                        red: escapeRoom.red,
+                        green: escapeRoom.green,
+                        blue: escapeRoom.blue,
+                        escapeRoomId: escapeRoom.objectID)
                 }
-            }
-            .sheet(item: $selectedEscapeRoom){ escapeRoom in
-                DetailViewEscapeRoom(
-                    name: escapeRoom.name ?? "",
-                    image: escapeRoom.image ?? "AddImage",
-                    descriptionText: escapeRoom.descriptionText ?? "",
-                    averageRating: escapeRoom.averageRating,
-                    difficulty: escapeRoom.difficulty,
-                    lineal: escapeRoom.lineal,
-                    recreation: escapeRoom.recreation,
-                    gameMaster: escapeRoom.gameMaster,
-                    featured: escapeRoom.featured,
-                    past: escapeRoom.past,
-                    datePast: escapeRoom.datePast ?? .now,
-                    red: escapeRoom.red,
-                    green: escapeRoom.green,
-                    blue: escapeRoom.blue,
-                    escapeRoomId: escapeRoom.objectID)
-            }
-            .sheet(isPresented: $showNewEscapeRoom){
-                EditorNameImageView()
-            }
-            .sheet(isPresented: $showAdjustmentsView){
-                AdjustmentsView(redTheme: $redTheme, greenTheme: $greenTheme, blueTheme: $blueTheme)
-            }
-            .sheet(isPresented: $showFiltersView){
-                FiltersView(
-                    redTheme: $redTheme,
-                    greenTheme: $greenTheme,
-                    blueTheme: $blueTheme,
-                    showPastOnly: $pastOnly,
-                    showFeaturedOnly: $featureOnly,
-                    maxAverageRating: $maxAverageRating)
-            }
-
+                .sheet(isPresented: $showNewEscapeRoom){
+                    EditorNameImageView()
+                }
+                .sheet(isPresented: $showAdjustmentsView){
+                    AdjustmentsView(redTheme: $redTheme, greenTheme: $greenTheme, blueTheme: $blueTheme)
+                }
+                .sheet(isPresented: $showFiltersView){
+                    FiltersView(
+                        redTheme: $redTheme,
+                        greenTheme: $greenTheme,
+                        blueTheme: $blueTheme,
+                        showPastOnly: $pastOnly,
+                        showFeaturedOnly: $featureOnly,
+                        maxAverageRating: $maxAverageRating)
+                }
+                }
         }
-    
     }
 
     private func setPast(item escapeRoom: EscapeRoom){
