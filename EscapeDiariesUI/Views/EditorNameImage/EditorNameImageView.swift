@@ -17,40 +17,42 @@ struct EditorNameImageView: View {
     
     @State var name: String = "Nombre"
     @State var image: String = "AddImage"
-    @State var red: Double = 0.000
-    @State var green: Double = 0.991
-    @State var blue: Double = 1.000
+    @State var red: Double = 0.338
+    @State var green: Double = 0.887
+    @State var blue: Double = 0.858
     @State var nameError = false
     
     var escapeRoomId: NSManagedObjectID?
     let viewModel = AddEscapeRoomViewModel()
     
     var body: some View {
-        NavigationView{
-            Form{
-                Section(){
-                    VStack{
-                        ImageView(image: $image)
+        GeometryReader{ geometry in
+            NavigationView{
+                Form{
+                    Section(){
+                        VStack{
+                            ImageView(image: $image)
 
-                        NameView(name: $name, red: $red, green: $green, blue: $blue)
-                            .foregroundColor(Color(red: red, green: green, blue: blue))
+                            NameView(name: $name, red: $red, green: $green, blue: $blue)
+                                .foregroundColor(Color(red: red, green: green, blue: blue))
+                        }
+                        
+                    }.listRowSeparator(.hidden)
+                    
+                    Section(){
+                        SelectorThemesView(red: $red, green: $green, blue: $blue)
                     }
                     
-                }.listRowSeparator(.hidden)
-                
-                Section(){
-                    SelectorThemesView(red: $red, green: $green, blue: $blue)
-                }
-                
-                Section(){
-                    withAnimation {
+                    Section(){
                         SelectorImagesView(image: $image)
                     }
+                    .frame(height: geometry.size.width * 0.8, alignment: .center)
+                    
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button{
-                           // if escapeRoomId == nil {
+                            // if escapeRoomId == nil {
                                 let values = EscapeRoomValues(
                                     name: name,
                                     image: image,
@@ -112,6 +114,7 @@ struct EditorNameImageView: View {
                     }
                     
                 }
+                .frame(height: geometry.size.height)
             }
         }
     }
@@ -120,7 +123,7 @@ struct EditorNameImageView: View {
 struct EditorNameImageView_Previews: PreviewProvider {
     static var previews: some View {
         EditorNameImageView(//escapeRoom: getEscapeRoom(),
-            red: 1.000, green: 0.186, blue: 0.573)
+            red: 0.986, green: 0.102, blue: 0.302)
     }
     static func getEscapeRoom() -> EscapeRoom {
         let escapeRoom = EscapeRoom(context: CoreDataManager(inMemory: true).persistenceContainer.viewContext)

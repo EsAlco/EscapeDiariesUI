@@ -44,6 +44,6 @@ struct NameView: View {
 
 struct NameView_Previews: PreviewProvider {
     static var previews: some View {
-        NameView(name: .constant("Nombre"), red: .constant(1.000), green: .constant(0.186), blue: .constant(0.573))
+        NameView(name: .constant("Nombre"), red: .constant(0.986), green: .constant(0.102), blue: .constant(0.302))
     }
 }

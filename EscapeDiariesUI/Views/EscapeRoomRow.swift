@@ -61,9 +61,9 @@ struct EscapeRoomRow_Previews: PreviewProvider {
         escapeRoom.averageRating = 4.5
         escapeRoom.featured = true
         escapeRoom.past = true
-        escapeRoom.red = 0.000
-        escapeRoom.green = 0.991
-        escapeRoom.blue = 1.000
+        escapeRoom.red = 0.986
+        escapeRoom.green = 0.102
+        escapeRoom.blue = 0.302
         
         return escapeRoom
     }

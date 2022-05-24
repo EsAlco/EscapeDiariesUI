@@ -30,19 +30,24 @@ struct AdjustmentsView: View {
                 }
             }
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancelar"){
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                    .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                }
                 ToolbarItem(placement: .navigationBarTrailing){
-                    Button{
+                    Button("OK"){
                         self.presentationMode.wrappedValue.dismiss()
                         
                         appStorageRedTheme = self.redTheme
                         appStorageGreenTheme = self.greenTheme
                         appStorageBlueTheme = self.blueTheme
                         
-                    }label: {
-                        Image(systemName: "xmark")
-                            .font(.headline)
-                            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
                     }
+                    .font(.title2)
+                    .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                    
                 }
             }
         }
@@ -56,6 +61,6 @@ struct AdjustmentsView: View {
 
 struct AdjustmentsView_Previews: PreviewProvider {
     static var previews: some View {
-        AdjustmentsView(redTheme: .constant(0.338), greenTheme: .constant(0.887), blueTheme: .constant(0.858))
+        AdjustmentsView(redTheme: .constant(0.986), greenTheme: .constant(0.102), blueTheme: .constant(0.302))
     }
 }

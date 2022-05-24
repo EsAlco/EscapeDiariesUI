@@ -14,18 +14,22 @@ struct FeaturedView: View {
     @Binding var blue: Double
     
     @Binding var isFeatured: Bool
+    @Binding var isPast: Bool
     
     var body: some View {
-        HStack{
-            VStack {
-                Text("Favorito:")
-                    .font(.system(size: 17, weight: .black, design: .rounded))
-                    .padding(2)
+        VStack{
+            HStack {
                 Image(systemName: isFeatured ? "heart.fill" : "heart")
                     .foregroundColor(Color(red: red, green: green, blue: blue))
                     .font(.system(size: 25, weight: .semibold, design: .rounded))
                     .onTapGesture {
                         self.isFeatured.toggle()
+                    }.padding(.bottom)
+                Image(systemName: isPast ? "checkmark.seal.fill" : "checkmark.seal")
+                    .foregroundColor(Color(red: red, green: green, blue: blue))
+                    .font(.system(size: 25, weight: .semibold, design: .rounded))
+                    .onTapGesture {
+                        self.isPast.toggle()
                     }.padding(.bottom)
             }.padding(.horizontal)
             Spacer()
@@ -35,6 +39,6 @@ struct FeaturedView: View {
 
 struct FeaturedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeaturedView(red: .constant(0.000), green: .constant(0.991), blue: .constant(1.000), isFeatured: .constant(true))
+        FeaturedView(red: .constant(0.986), green: .constant(0.102), blue: .constant(0.302), isFeatured: .constant(true), isPast: .constant(true))
     }
 }

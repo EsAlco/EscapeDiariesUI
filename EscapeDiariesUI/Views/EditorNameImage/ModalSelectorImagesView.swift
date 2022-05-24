@@ -31,7 +31,7 @@ struct ModalSelectorImagesView: View {
                         Image("DaleAlCoco")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -48,20 +48,17 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = false
                                 }
                             }
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-
-                            .foregroundColor(.gray)
+                        RoundedRectangle(cornerRadius: 20)
+                             .stroke(lineWidth: 4)
+                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                             .foregroundColor(.gray)
                             .opacity(showAnimationImageDaleAlCoco ? 0.5 : 0)
                     }
                     ZStack{
                         Image("TheRomboCode")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -78,12 +75,9 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = false
                                 }
                             }
-                        Rectangle()
+                       RoundedRectangle(cornerRadius: 20)
                             .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .foregroundColor(.gray)
                             .opacity(showAnimationImageTheRomboCode ? 0.5 : 0)
                     }
@@ -91,7 +85,7 @@ struct ModalSelectorImagesView: View {
                         Image("FoxInABox")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -108,23 +102,21 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = false
                                 }
                             }
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-                            .foregroundColor(.gray)
+                        RoundedRectangle(cornerRadius: 20)
+                             .stroke(lineWidth: 4)
+                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                             .foregroundColor(.gray)
                             .opacity(showAnimationImageFoxInABox ? 0.5 : 0)
                     }
                     Spacer()
-                }
+                }.padding(.top, 10)
                 
                 VStack{
                     ZStack{
                         Image("Incognito")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -141,13 +133,10 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = false
                                 }
                             }
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-
-                            .foregroundColor(.gray)
+                        RoundedRectangle(cornerRadius: 20)
+                             .stroke(lineWidth: 4)
+                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                             .foregroundColor(.gray)
                             .opacity(showAnimationImageIncognito ? 0.5 : 0)
                     }
                     ZStack{
@@ -155,7 +144,7 @@ struct ModalSelectorImagesView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .padding(5)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -172,20 +161,17 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = false
                                 }
                             }
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-
-                            .foregroundColor(.gray)
+                        RoundedRectangle(cornerRadius: 20)
+                             .stroke(lineWidth: 4)
+                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                             .foregroundColor(.gray)
                             .opacity(showAnimationImageFiveMonkeys ? 0.5 : 0)
                     }
                     ZStack{
                         Image("ExitMadrid")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -202,25 +188,22 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = false
                                 }
                             }
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-
-                            .foregroundColor(.gray)
+                        RoundedRectangle(cornerRadius: 20)
+                             .stroke(lineWidth: 4)
+                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                             .foregroundColor(.gray)
                             .opacity(showAnimationImageExitMadrid ? 0.5 : 0)
                     }
                     
                     Spacer()
-                }
+                }.padding(.top, 10)
                 
                 VStack{
                     ZStack{
                         Image("Xkapa")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -237,20 +220,17 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = false
                                 }
                             }
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-
-                            .foregroundColor(.gray)
+                        RoundedRectangle(cornerRadius: 20)
+                             .stroke(lineWidth: 4)
+                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                             .foregroundColor(.gray)
                             .opacity(showAnimationImageXkapa ? 0.5 : 0)
                     }
                     ZStack{
                         Image("Enigma")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -267,20 +247,17 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = false
                                 }
                             }
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-
-                            .foregroundColor(.gray)
+                        RoundedRectangle(cornerRadius: 20)
+                             .stroke(lineWidth: 4)
+                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                             .foregroundColor(.gray)
                             .opacity(showAnimationImageEnigma ? 0.5 : 0)
                     }
                     ZStack{
                         Image("Cubick")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: 100, height: 100)
+                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -297,22 +274,20 @@ struct ModalSelectorImagesView: View {
                                     self.showAnimationImageCubick = true
                                 }
                             }
-                        Rectangle()
-                            .stroke(lineWidth: 4)
-                            .padding(5)
-                            .cornerRadius(20)
-                            .frame(width: 130, height: 130)
-
-                            .foregroundColor(.gray)
+                        RoundedRectangle(cornerRadius: 20)
+                             .stroke(lineWidth: 4)
+                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                             .foregroundColor(.gray)
                             .opacity(showAnimationImageCubick ? 0.5 : 0)
                     }
                     
                     Spacer()
-                }
+                }.padding(.top, 10)
             }
+            .frame(width: geometry.size.width, alignment: .center)
             .background(Color.white)
             .cornerRadius(25)
-            .offset(y: geometry.size.height * 0.5)
+            .offset(y: geometry.size.height * 0.50)
         }
     }
 }

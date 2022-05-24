@@ -58,18 +58,23 @@ struct FiltersView: View {
             }
             .navigationTitle("Filtros")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancelar"){
+                        self.presentationMode.wrappedValue.dismiss()
+                    }
+                    .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+                }
                 ToolbarItem(placement: .navigationBarTrailing){
-                    Button{
+                    Button("OK"){
                         self.presentationMode.wrappedValue.dismiss()
                         
                         appStoragePastOnly = self.showPastOnly
                         appStorageFeatureOnly = self.showFeaturedOnly
                         appStorageMaxAverageRating = self.maxAverageRating
-                    }label: {
-                        Image(systemName: "checkmark.circle")
-                            .font(.title)
-                            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
                     }
+                    .font(.title2)
+                    .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+
                 }
             }
         }
@@ -84,6 +89,6 @@ struct FiltersView: View {
 
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
-        FiltersView(redTheme: .constant(0.000), greenTheme: .constant(0.991), blueTheme: .constant(1.000), showPastOnly: .constant(false), showFeaturedOnly: .constant(false), maxAverageRating: .constant(5.0))
+        FiltersView(redTheme: .constant(0.986), greenTheme: .constant(0.102), blueTheme: .constant(0.302), showPastOnly: .constant(false), showFeaturedOnly: .constant(false), maxAverageRating: .constant(5.0))
     }
 }
