@@ -62,7 +62,6 @@ struct DetailViewEscapeRoom: View {
                                 red: $red,
                                 green: $green,
                                 blue: $blue)
-                          //  .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.30)
                             
                             ValuationView(
                                 averageRating: $averageRating,
@@ -73,7 +72,6 @@ struct DetailViewEscapeRoom: View {
                                 red: $red,
                                 green: $green,
                                 blue: $blue)
-                        //    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.20)
                             
                             PastView(
                                 red: $red,
@@ -81,19 +79,28 @@ struct DetailViewEscapeRoom: View {
                                 blue: $blue,
                                 datePast: $datePast,
                                 isPast: $past)
-                          //  .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.15)
                         }
                     }
                     .frame(width: geometry.size.width * 0.9)
                     .toolbar {
+                        
                         ToolbarItem(placement: .navigationBarLeading) {
+                            Button("Cancelar"){
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                            .font(.headline)
+                            .foregroundColor(Color(red: red, green: green, blue: blue))
+                        }
+                        ToolbarItem(placement: .principal) {
                             TextField("", text: $name)
                                 .font(.system(size: 40, weight: .bold, design: .rounded))
-                                .frame(maxWidth: geometry.size.width * 0.5, alignment: .leading)
+                                .frame(maxWidth: geometry.size.width * 0.5)
+                                .foregroundColor(Color(red: red, green: green, blue: blue))
+                                .multilineTextAlignment(.center)
                         }
-                        ToolbarItemGroup(placement: .navigationBarTrailing) {
-         
-                            Button (action: {
+                        
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button("Guardar"){
                                 let values = EscapeRoomValues(
                                     name: name,
                                     image: image,
@@ -117,19 +124,13 @@ struct DetailViewEscapeRoom: View {
                                 
                                 self.presentationMode.wrappedValue.dismiss()
                             
-                            }, label: {
-                                Text("Guardar")
-                                    .font(.headline)
-                                    .foregroundColor(Color(red: red, green: green, blue: blue))
-                            })
-                            
-                            Button (action: {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }, label: {
-                                Text("Cancel")
-                                    .font(.headline)
-                                    .foregroundColor(Color(red: red, green: green, blue: blue))
-                            })
+                            }
+                            .font(.headline)
+                            .foregroundColor(Color(red: red, green: green, blue: blue))
+                        }
+                        
+                        ToolbarItem(placement: .bottomBar) {
+                            SelectorThemesView(red: $red, green: $green, blue: $blue)
                         }
                     }
                     .onAppear {

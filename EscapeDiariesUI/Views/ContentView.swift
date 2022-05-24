@@ -42,6 +42,7 @@ struct ContentView: View {
                     escapeRooms.filter(shouldShowEscapeRoom).filter(searchResults),
                     id: \.id){ escapeRoom in
                         EscapeRoomRow(escapeRoom: escapeRoom)
+                            .foregroundColor(Color(red: escapeRoom.red, green: escapeRoom.green, blue: escapeRoom.blue))
                             .onTapGesture{
                                 self.selectedEscapeRoom = escapeRoom
                             }
@@ -68,7 +69,7 @@ struct ContentView: View {
                 }
                 .onDelete(perform: deleteEscapeRooms)
             }
-            .foregroundColor(Color(red: redTheme, green: greenTheme, blue: blueTheme))
+            
             .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
             .navigationBarTitle("Salas de Escape")
             .toolbar {
