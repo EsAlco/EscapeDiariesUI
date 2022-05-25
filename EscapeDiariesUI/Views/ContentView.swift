@@ -14,9 +14,22 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @FetchRequest(entity: EscapeRoom.entity(),
-        sortDescriptors: [NSSortDescriptor(keyPath: \EscapeRoom.name, ascending: true)],
-        animation: .default)
+                  sortDescriptors: [NSSortDescriptor(keyPath: \EscapeRoom.name, ascending: true)], animation: .default)
     var escapeRooms: FetchedResults<EscapeRoom>
+    
+    var searchQuery: Binding<String> {
+        Binding {
+            searchText
+        } set: { newValue in
+            searchText = newValue
+            
+            guard !newValue.isEmpty else {
+                escapeRooms.nsPredicate = nil
+                return
+            }
+            escapeRooms.nsPredicate = NSPredicate(format: "name CONTAINS[cd] %@", newValue)
+        }
+    }
     
     @State var selectedEscapeRoom: EscapeRoom?
     
@@ -48,7 +61,7 @@ struct ContentView: View {
                         .opacity(0.2)
                 List{
                 ForEach(
-                    escapeRooms.filter(shouldShowEscapeRoom).filter(searchResults),
+                    escapeRooms.filter(shouldShowEscapeRoom),
                     id: \.id){ escapeRoom in
                         EscapeRoomRow(escapeRoom: escapeRoom)
                             .foregroundColor(Color(red: escapeRoom.red, green: escapeRoom.green, blue: escapeRoom.blue))
@@ -79,7 +92,7 @@ struct ContentView: View {
                 .onDelete(perform: deleteEscapeRooms)
             }
             
-                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
+                .searchable(text: searchQuery, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
                 .navigationBarTitle("Salas de Escape")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
@@ -178,14 +191,6 @@ struct ContentView: View {
         let checkPrice = (escapeRoom.averageRating <= maxAverageRating)
         
         return checkPast && checkFavorite && checkPrice
-    }
-    
-    private func searchResults(escapeRoom: EscapeRoom) -> Bool {
-        
-        if searchText.isEmpty {
-            return true
-        }
-        return (((escapeRoom.name?.lowercased().contains(searchText.lowercased()))) != nil)
     }
 }
 
