@@ -19,6 +19,7 @@ struct EscapeRoomRow: View {
             Image(escapeRoom.image ?? "AddImage")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
+                .padding(10)
                 .frame(width: 60, height: 60)
                 .clipped()
                 .cornerRadius(30)

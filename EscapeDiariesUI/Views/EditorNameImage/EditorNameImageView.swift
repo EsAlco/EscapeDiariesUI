@@ -41,6 +41,7 @@ struct EditorNameImageView: View {
                     
                     Section(){
                         SelectorThemesView(red: $red, green: $green, blue: $blue)
+                            //.background(Color("backgroundColor"))
                     }
                     
                     Section(){

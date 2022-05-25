@@ -29,9 +29,8 @@ struct SelectorImagesView: View {
                         Image("DaleAlCoco")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .padding(6)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .padding(9)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -58,9 +57,8 @@ struct SelectorImagesView: View {
                         Image("TheRomboCode")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .padding(20)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .padding(17)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -87,8 +85,8 @@ struct SelectorImagesView: View {
                         Image("FoxInABox")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .padding(5)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -118,8 +116,8 @@ struct SelectorImagesView: View {
                         Image("Incognito")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .padding(7)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -147,8 +145,7 @@ struct SelectorImagesView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .padding(5)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -175,8 +172,8 @@ struct SelectorImagesView: View {
                         Image("ExitMadrid")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .padding(4)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -206,9 +203,8 @@ struct SelectorImagesView: View {
                         Image("Xkapa")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .padding(5)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .padding(7)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -235,8 +231,8 @@ struct SelectorImagesView: View {
                         Image("Enigma")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .padding(5)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -263,9 +259,8 @@ struct SelectorImagesView: View {
                         Image("Cubick")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .padding(8)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
-                            .padding()
+                            .padding(14)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -290,7 +285,7 @@ struct SelectorImagesView: View {
                     }
                 }
             }.padding()
-            .background(Color("backgroundColor"))
+            //.background(Color("backgroundColor"))
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }
     }
