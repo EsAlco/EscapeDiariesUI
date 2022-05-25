@@ -124,6 +124,7 @@ struct EditorNameImageView_Previews: PreviewProvider {
     static var previews: some View {
         EditorNameImageView(//escapeRoom: getEscapeRoom(),
             red: 0.986, green: 0.102, blue: 0.302)
+        .preferredColorScheme(.dark)
     }
     static func getEscapeRoom() -> EscapeRoom {
         let escapeRoom = EscapeRoom(context: CoreDataManager(inMemory: true).persistenceContainer.viewContext)

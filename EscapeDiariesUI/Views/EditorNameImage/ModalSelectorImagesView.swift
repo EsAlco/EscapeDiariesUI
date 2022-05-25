@@ -31,7 +31,8 @@ struct ModalSelectorImagesView: View {
                         Image("DaleAlCoco")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding(9)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -58,7 +59,8 @@ struct ModalSelectorImagesView: View {
                         Image("TheRomboCode")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding(17)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -85,7 +87,8 @@ struct ModalSelectorImagesView: View {
                         Image("FoxInABox")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding(5)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -109,14 +112,15 @@ struct ModalSelectorImagesView: View {
                             .opacity(showAnimationImageFoxInABox ? 0.5 : 0)
                     }
                     Spacer()
-                }.padding(.top, 10)
+                }.padding(.leading, 30)
                 
                 VStack{
                     ZStack{
                         Image("Incognito")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding(7)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -144,7 +148,7 @@ struct ModalSelectorImagesView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .padding(5)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -171,7 +175,8 @@ struct ModalSelectorImagesView: View {
                         Image("ExitMadrid")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding(4)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -196,14 +201,15 @@ struct ModalSelectorImagesView: View {
                     }
                     
                     Spacer()
-                }.padding(.top, 10)
+                }.padding(.top, 3)
                 
                 VStack{
                     ZStack{
                         Image("Xkapa")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding(7)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -230,7 +236,8 @@ struct ModalSelectorImagesView: View {
                         Image("Enigma")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding(5)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -257,7 +264,8 @@ struct ModalSelectorImagesView: View {
                         Image("Cubick")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding(14)
+                            .frame(width: geometry.size.width * 0.20, height: geometry.size.width * 0.20)
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -282,10 +290,10 @@ struct ModalSelectorImagesView: View {
                     }
                     
                     Spacer()
-                }.padding(.top, 10)
+                }.padding(.trailing, 30)
             }
             .frame(width: geometry.size.width, alignment: .center)
-            .background(Color.white)
+            .background(Color("backgroundColor"))
             .cornerRadius(25)
             .offset(y: geometry.size.height * 0.50)
         }
@@ -295,6 +303,7 @@ struct ModalSelectorImagesView: View {
 struct ModalSelectorImagesView_Previews: PreviewProvider {
     static var previews: some View {
         ModalSelectorImagesView(image: .constant("Incognito"))
+            .preferredColorScheme(.dark)
             .background(Color.gray)
     }
 }

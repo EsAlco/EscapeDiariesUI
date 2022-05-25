@@ -71,5 +71,6 @@ struct AdjustmentsView: View {
 struct AdjustmentsView_Previews: PreviewProvider {
     static var previews: some View {
         AdjustmentsView(redTheme: .constant(0.986), greenTheme: .constant(0.102), blueTheme: .constant(0.302))
+            .preferredColorScheme(.dark)
     }
 }

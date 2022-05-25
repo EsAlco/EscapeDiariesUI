@@ -15,14 +15,16 @@ struct ImageView: View {
         Image(image)
             .resizable()
             .aspectRatio(contentMode: .fill)
+            .padding(40)
             .frame(width: 200, height: 200)
-            .padding(4)
+            .padding(25)
             .cornerRadius(100)
     }
 }
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        ImageView(image: .constant("DaleAlCoco"))
+        ImageView(image: .constant("TheRomboCode"))
+            .preferredColorScheme(.light)
     }
 }

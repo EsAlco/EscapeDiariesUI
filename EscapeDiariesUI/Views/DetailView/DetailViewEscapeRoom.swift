@@ -186,6 +186,7 @@ struct DetailViewEscapeRoom: View {
 struct DetailViewEscapeRoom_Previews: PreviewProvider {
     static var previews: some View {
         DetailViewEscapeRoom(name: "La Nevera", image: "DaleAlCoco", descriptionText: "", averageRating: 2.0, difficulty: 1, lineal: 1, recreation: 0, gameMaster: 0, featured: false, past: true, datePast: Date.now, red: 0.986, green: 0.102, blue: 0.302)
+            .preferredColorScheme(.light)
             .previewInterfaceOrientation(.portrait)
     }
 }

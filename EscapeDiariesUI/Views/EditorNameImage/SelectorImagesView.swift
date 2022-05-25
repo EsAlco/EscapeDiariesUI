@@ -29,7 +29,9 @@ struct SelectorImagesView: View {
                         Image("DaleAlCoco")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
+                            .padding(6)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -56,7 +58,9 @@ struct SelectorImagesView: View {
                         Image("TheRomboCode")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
+                            .padding(20)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -84,6 +88,7 @@ struct SelectorImagesView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -114,6 +119,7 @@ struct SelectorImagesView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -142,6 +148,7 @@ struct SelectorImagesView: View {
                             .aspectRatio(contentMode: .fill)
                             .padding(5)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -169,6 +176,7 @@ struct SelectorImagesView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -198,7 +206,9 @@ struct SelectorImagesView: View {
                         Image("Xkapa")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
+                            .padding(5)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -226,6 +236,7 @@ struct SelectorImagesView: View {
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -252,7 +263,9 @@ struct SelectorImagesView: View {
                         Image("Cubick")
                             .resizable()
                             .aspectRatio(contentMode: .fill)
+                            .padding(8)
                             .frame(width: geometry.size.width * 0.25, height: geometry.size.width * 0.25)
+                            .padding()
                             .cornerRadius(20)
                             .onTapGesture {
                                 withAnimation {
@@ -276,7 +289,8 @@ struct SelectorImagesView: View {
                             .opacity(showAnimationImageCubick ? 0.5 : 0)
                     }
                 }
-            }
+            }.padding()
+            .background(Color("backgroundColor"))
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }
     }
@@ -285,5 +299,6 @@ struct SelectorImagesView: View {
 struct SelectorImagesView_Previews: PreviewProvider {
     static var previews: some View {
         SelectorImagesView(image: .constant(""))
+            .preferredColorScheme(.dark)
     }
 }

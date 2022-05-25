@@ -100,5 +100,6 @@ struct FiltersView: View {
 struct FiltersView_Previews: PreviewProvider {
     static var previews: some View {
         FiltersView(redTheme: .constant(0.986), greenTheme: .constant(0.102), blueTheme: .constant(0.302), showPastOnly: .constant(false), showFeaturedOnly: .constant(false), maxAverageRating: .constant(5.0))
+            .preferredColorScheme(.dark)
     }
 }
