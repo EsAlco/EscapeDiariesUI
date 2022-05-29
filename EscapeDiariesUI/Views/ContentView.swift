@@ -113,6 +113,7 @@ struct ContentView: View {
                                 }.tint(.green)
                             }
                 }
+                    .listRowBackground(Color.gray.opacity(0.2))
             }
                 .searchable(text: searchQuery, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
                 .navigationBarTitle("Salas de Escape")

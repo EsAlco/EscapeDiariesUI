@@ -51,10 +51,9 @@ struct DetailViewEscapeRoom: View {
                             VStack{
                                 HStack{
                                     TextField("", text: $name)
-                                        .font(.system(size: 50, weight: .bold, design: .rounded))
-                                        .frame(maxWidth: geometry.size.width * 0.5)
+                                        .font(.system(size: 40, weight: .bold, design: .rounded))
                                         .foregroundColor(Color(red: red, green: green, blue: blue))
-                                        .multilineTextAlignment(.center)
+                                        .multilineTextAlignment(.leading)
                                         .minimumScaleFactor(0.5)
                                     Spacer()
                                 }
