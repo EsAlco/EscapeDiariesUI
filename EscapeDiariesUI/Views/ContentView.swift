@@ -39,7 +39,6 @@ struct ContentView: View {
     @State var showFiltersView: Bool = false
     @State var showNewEscapeRoom: Bool = false
     @State var showAdjustmentsView: Bool = false
-    @State var showEditEscapeRoom: Bool = false
     
     @State var pastOnly: Bool = false
     @State var featureOnly: Bool = false
@@ -97,16 +96,24 @@ struct ContentView: View {
                                 }
                                 Button {
                                     self.editInfoEscapeRoom(item: escapeRoom)
-                                    self.showEditEscapeRoom.toggle()
                                 } label: {
                                     Image(systemName: "info.circle.fill")
                                 }.tint(.yellow)
-
                             }
-                        
+                            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                Button {
+                                    self.setFeatured(item: escapeRoom)
+                                } label: {
+                                    Image(systemName: "heart")
+                                }.tint(.red)
+
+                                Button {
+                                    self.setPast(item: escapeRoom)
+                                } label: {
+                                    Image(systemName: "checkmark.circle")
+                                }.tint(.green)
+                            }
                 }
-                    
-                //.onDelete(perform: deleteEscapeRooms)
             }
             
                 .searchable(text: searchQuery, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
@@ -201,27 +208,17 @@ struct ContentView: View {
     private func setFeatured(item escapeRoom: EscapeRoom){
         if let idx = escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
             escapeRooms[idx].featured.toggle()
-        
         }
     }
     
     private func editInfoEscapeRoom(item escapeRoom: EscapeRoom){
         if let idx = escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
             editEscapeRoom = escapeRooms[idx]
-        
         }
     }
 
     private func removeEscapeRoom(_ escapeRoom: EscapeRoom) {
         withAnimation {
-            managedObjectContext.delete(escapeRoom)
-        }
-        CoreDataManager.shared.save()
-    }
-    
-    private func deleteEscapeRooms(att offsets: IndexSet){
-        for index in offsets {
-            let escapeRoom = escapeRooms[index]
             managedObjectContext.delete(escapeRoom)
         }
         CoreDataManager.shared.save()
