@@ -50,7 +50,8 @@ struct DetailViewEscapeRoom: View {
                                 .opacity(0.2)
                             VStack{
                                 HStack{
-                                    TextField("", text: $name)
+                                    TextField("Nombre", text: $name)
+                                        .keyboardType(.alphabet)
                                         .font(.system(size: 40, weight: .bold, design: .rounded))
                                         .foregroundColor(Color(red: red, green: green, blue: blue))
                                         .multilineTextAlignment(.leading)

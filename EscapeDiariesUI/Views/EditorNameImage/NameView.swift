@@ -17,6 +17,7 @@ struct NameView: View {
     var body: some View {
         HStack{
             TextField("Nombre", text: $name)
+                .keyboardType(.alphabet)
                 .font(.system(size: 30, weight: .semibold, design: .rounded))
                 .multilineTextAlignment(.center)
 
