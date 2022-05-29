@@ -14,7 +14,7 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     
     @FetchRequest(entity: EscapeRoom.entity(),
-                  sortDescriptors: [NSSortDescriptor(keyPath: \EscapeRoom.name, ascending: true)], animation: .default)
+                  sortDescriptors: [NSSortDescriptor(keyPath: \EscapeRoom.name, ascending: true)])
     var escapeRooms: FetchedResults<EscapeRoom>
     
     var searchQuery: Binding<String> {
@@ -52,7 +52,6 @@ struct ContentView: View {
     var body: some View {
         
         UITableView.appearance().backgroundColor = .clear
-        UITableViewCell.appearance().backgroundColor = .clear
         
         return NavigationView{
             ZStack{
@@ -104,18 +103,17 @@ struct ContentView: View {
                                 Button {
                                     self.setFeatured(item: escapeRoom)
                                 } label: {
-                                    Image(systemName: "heart")
+                                    Image(systemName: escapeRoom.featured ? "heart.slash.fill" : "heart")
                                 }.tint(.red)
 
                                 Button {
                                     self.setPast(item: escapeRoom)
                                 } label: {
-                                    Image(systemName: "checkmark.circle")
+                                    Image(systemName: escapeRoom.past ? "xmark.circle" : "checkmark.circle")
                                 }.tint(.green)
                             }
                 }
             }
-            
                 .searchable(text: searchQuery, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
                 .navigationBarTitle("Salas de Escape")
                 .toolbar {

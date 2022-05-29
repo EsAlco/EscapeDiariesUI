@@ -36,7 +36,9 @@ struct DetailViewEscapeRoom: View {
     var escapeRoomId: NSManagedObjectID?
     let viewModel = AddEscapeRoomViewModel()
     
+    
     var body: some View {
+     
         GeometryReader{ geometry in
             ZStack {
                 NavigationView{
@@ -47,6 +49,15 @@ struct DetailViewEscapeRoom: View {
                                 .scaledToFit()
                                 .opacity(0.2)
                             VStack{
+                                HStack{
+                                    TextField("", text: $name)
+                                        .font(.system(size: 50, weight: .bold, design: .rounded))
+                                        .frame(maxWidth: geometry.size.width * 0.5)
+                                        .foregroundColor(Color(red: red, green: green, blue: blue))
+                                        .multilineTextAlignment(.center)
+                                        .minimumScaleFactor(0.5)
+                                    Spacer()
+                                }
                                 ImageView(
                                     image: $image)
                                 .onTapGesture {
@@ -88,7 +99,7 @@ struct DetailViewEscapeRoom: View {
                         }
                         
                     }
-                    .frame(width: geometry.size.width * 0.9)
+                    .frame(width: geometry.size.width * 0.9, height: geometry.size.height * 0.9)
                     .toolbar {
                         
                         ToolbarItem(placement: .navigationBarLeading) {
@@ -97,15 +108,6 @@ struct DetailViewEscapeRoom: View {
                             }
                             .font(.headline)
                             .foregroundColor(Color(red: red, green: green, blue: blue))
-                        }
-                        ToolbarItem(placement: .principal) {
-                            TextField("", text: $name)
-                                .font(.system(size: 40, weight: .bold, design: .rounded))
-                                .frame(maxWidth: geometry.size.width * 0.5)
-                                .foregroundColor(Color(red: red, green: green, blue: blue))
-                                .multilineTextAlignment(.center)
-                                .minimumScaleFactor(0.5)
-                                
                         }
                         
                         ToolbarItem(placement: .navigationBarTrailing) {
