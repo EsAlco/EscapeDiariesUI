@@ -32,12 +32,14 @@ struct ContentView: View {
     }
     
     @State var selectedEscapeRoom: EscapeRoom?
+    @State var editEscapeRoom: EscapeRoom?
     
     @State var searchText: String = ""
     
     @State var showFiltersView: Bool = false
     @State var showNewEscapeRoom: Bool = false
     @State var showAdjustmentsView: Bool = false
+    @State var showEditEscapeRoom: Bool = false
     
     @State var pastOnly: Bool = false
     @State var featureOnly: Bool = false
@@ -87,9 +89,24 @@ struct ContentView: View {
                                     Label("Eliminar", systemImage: "trash")
                                 }
                             }
+                            .swipeActions{
+                                Button(role: .destructive) {
+                                    self.removeEscapeRoom(escapeRoom)
+                                } label: {
+                                    Image(systemName: "trash")
+                                }
+                                Button {
+                                    self.editInfoEscapeRoom(item: escapeRoom)
+                                    self.showEditEscapeRoom.toggle()
+                                } label: {
+                                    Image(systemName: "info.circle.fill")
+                                }.tint(.yellow)
+
+                            }
                         
                 }
-                .onDelete(perform: deleteEscapeRooms)
+                    
+                //.onDelete(perform: deleteEscapeRooms)
             }
             
                 .searchable(text: searchQuery, placement: .navigationBarDrawer(displayMode: .automatic), prompt: "Busdcar Escape Room")
@@ -139,7 +156,7 @@ struct ContentView: View {
                         escapeRoomId: escapeRoom.objectID)
                 }
                 .sheet(isPresented: $showNewEscapeRoom){
-                    EditorNameImageView()
+                    NewEscapeRoomView()
                 }
                 .sheet(isPresented: $showAdjustmentsView){
                     AdjustmentsView(redTheme: $redTheme, greenTheme: $greenTheme, blueTheme: $blueTheme)
@@ -153,7 +170,25 @@ struct ContentView: View {
                         showFeaturedOnly: $featureOnly,
                         maxAverageRating: $maxAverageRating)
                 }
+                .sheet(item: $editEscapeRoom) { escapeRoom in
+                    EditorNameImageView(
+                        name: escapeRoom.name ?? "",
+                        image: escapeRoom.image ?? "AddImage",
+                        descriptionText: escapeRoom.descriptionText ?? "",
+                        averageRating: escapeRoom.averageRating,
+                        difficulty: escapeRoom.difficulty,
+                        lineal: escapeRoom.lineal,
+                        recreation: escapeRoom.recreation,
+                        gameMaster: escapeRoom.gameMaster,
+                        featured: escapeRoom.featured,
+                        past: escapeRoom.past,
+                        datePast: escapeRoom.datePast ?? .now,
+                        red: escapeRoom.red,
+                        green: escapeRoom.green,
+                        blue: escapeRoom.blue,
+                        escapeRoomId: escapeRoom.objectID)
                 }
+            }
         }
     }
 
@@ -166,6 +201,13 @@ struct ContentView: View {
     private func setFeatured(item escapeRoom: EscapeRoom){
         if let idx = escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
             escapeRooms[idx].featured.toggle()
+        
+        }
+    }
+    
+    private func editInfoEscapeRoom(item escapeRoom: EscapeRoom){
+        if let idx = escapeRooms.firstIndex(where: {$0.id == escapeRoom.id}){
+            editEscapeRoom = escapeRooms[idx]
         
         }
     }

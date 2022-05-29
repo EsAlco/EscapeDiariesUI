@@ -13,13 +13,20 @@ struct EditorNameImageView: View {
     @Environment(\.managedObjectContext) private var managedObjectContext
     @Environment (\.presentationMode) var presentationMode
     
-    //@ObservedObject var escapeRoom: EscapeRoom
-    
-    @State var name: String = "Nombre"
-    @State var image: String = "AddImage"
-    @State var red: Double = 0.338
-    @State var green: Double = 0.887
-    @State var blue: Double = 0.858
+    @State var name: String
+    @State var image: String
+    @State var descriptionText: String
+    @State var averageRating: Double
+    @State var difficulty: Int16
+    @State var lineal: Int16
+    @State var recreation: Int16
+    @State var gameMaster: Int16
+    @State var featured: Bool
+    @State var past: Bool
+    @State var datePast: Date
+    @State var red: Double
+    @State var green: Double
+    @State var blue: Double
     @State var nameError = false
     
     var escapeRoomId: NSManagedObjectID?
@@ -41,7 +48,6 @@ struct EditorNameImageView: View {
                     
                     Section(){
                         SelectorThemesView(red: $red, green: $green, blue: $blue)
-                            //.background(Color("backgroundColor"))
                     }
                     
                     Section(){
@@ -53,41 +59,18 @@ struct EditorNameImageView: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button{
-                            // if escapeRoomId == nil {
-                                let values = EscapeRoomValues(
-                                    name: name,
-                                    image: image,
-                                    averageRating: 0.00,
-                                    descriptionText: "",
-                                    difficulty: -1,
-                                    lineal: -1,
-                                    recreation: -1,
-                                    gameMaster: -1,
-                                    featured: false,
-                                    past: false,
-                                    datePast: Date.now,
-                                    red: red,
-                                    green: green,
-                                    blue: blue)
-                                
-                                viewModel.saveEscapeRoom(
-                                    escapeRoomId: escapeRoomId,
-                                    with: values,
-                                    in: managedObjectContext)
-                                /*
-                            } else {
                             let values = EscapeRoomValues(
                                 name: name,
                                 image: image,
-                                averageRating: escapeRoomId.averageRating,
-                                descriptionText: escapeRoomId.descriptionText ?? "",
-                                difficulty: escapeRoomId.difficulty,
-                                lineal: escapeRoomId.lineal,
-                                recreation: escapeRoomId.recreation,
-                                gameMaster: escapeRoomId.gameMaster,
-                                featured: escapeRoomId.featured,
-                                past: escapeRoomId.past,
-                                datePast: escapeRoomId.datePast ?? . now,
+                                averageRating: averageRating,
+                                descriptionText: descriptionText,
+                                difficulty: difficulty,
+                                lineal: lineal,
+                                recreation: recreation,
+                                gameMaster: gameMaster,
+                                featured: featured,
+                                past: past,
+                                datePast: datePast,
                                 red: red,
                                 green: green,
                                 blue: blue)
@@ -96,7 +79,6 @@ struct EditorNameImageView: View {
                                     escapeRoomId: escapeRoomId,
                                     with: values,
                                     in: managedObjectContext)
-                            }*/
                             
                             self.presentationMode.wrappedValue.dismiss()
                             
@@ -115,6 +97,30 @@ struct EditorNameImageView: View {
                     }
                     
                 }
+                .onAppear {
+                    guard
+                        let objectId = escapeRoomId,
+                        let escapeRoom = viewModel.fetchEscapeRoom(
+                            for: objectId,
+                            context: managedObjectContext)
+                    else {
+                        return
+                    }
+                    name = escapeRoom.name ?? "Desconocido"
+                    image = escapeRoom.image ?? "AddImage"
+                    descriptionText = escapeRoom.descriptionText ?? ""
+                    averageRating = escapeRoom.averageRating
+                    difficulty = escapeRoom.difficulty
+                    lineal = escapeRoom.lineal
+                    recreation = escapeRoom.recreation
+                    gameMaster = escapeRoom.gameMaster
+                    featured = escapeRoom.featured
+                    past = escapeRoom.past
+                    red = escapeRoom.red
+                    green = escapeRoom.green
+                    blue = escapeRoom.blue
+                  
+                }
                 .frame(height: geometry.size.height)
             }
         }
@@ -123,22 +129,7 @@ struct EditorNameImageView: View {
 
 struct EditorNameImageView_Previews: PreviewProvider {
     static var previews: some View {
-        EditorNameImageView(//escapeRoom: getEscapeRoom(),
-            red: 0.986, green: 0.102, blue: 0.302)
+        EditorNameImageView(name: "La Nevera", image: "DaleAlCoco", descriptionText: "", averageRating: 0.0, difficulty: 0, lineal: 0, recreation: 0, gameMaster: 0, featured: true, past: false, datePast: .now, red: 0.986, green: 0.102, blue: 0.302)
         .preferredColorScheme(.dark)
-    }
-    static func getEscapeRoom() -> EscapeRoom {
-        let escapeRoom = EscapeRoom(context: CoreDataManager(inMemory: true).persistenceContainer.viewContext)
-        
-        escapeRoom.name = "La Nevera"
-        escapeRoom.image = "DaleAlCoco"
-        escapeRoom.averageRating = 4.5
-        escapeRoom.featured = true
-        escapeRoom.past = true
-        escapeRoom.red = 0.000
-        escapeRoom.green = 0.991
-        escapeRoom.blue = 1.000
-        
-        return escapeRoom
     }
 }

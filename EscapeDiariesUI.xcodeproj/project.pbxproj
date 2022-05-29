@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		EB15E85327EA30FD00D0E982 /* FiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85227EA30FD00D0E982 /* FiltersView.swift */; };
 		EB15E85727EB3D9300D0E982 /* FiltersFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */; };
+		EB2AABC32843600E00A564A9 /* NewEscapeRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB2AABC22843600E00A564A9 /* NewEscapeRoom.swift */; };
 		EB3D7F5B2832656000FBD3FA /* AddEscapeRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB3D7F5A2832656000FBD3FA /* AddEscapeRoomViewModel.swift */; };
 		EB67D2CA2790E4EB00D70158 /* EscapeRoomValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB67D2C92790E4EB00D70158 /* EscapeRoomValues.swift */; };
 		EB76B85F2836B9C0008A1167 /* FeaturedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB76B85E2836B9C0008A1167 /* FeaturedView.swift */; };
@@ -40,6 +41,7 @@
 /* Begin PBXFileReference section */
 		EB15E85227EA30FD00D0E982 /* FiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersView.swift; sourceTree = "<group>"; };
 		EB15E85627EB3D9300D0E982 /* FiltersFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersFactory.swift; sourceTree = "<group>"; };
+		EB2AABC22843600E00A564A9 /* NewEscapeRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEscapeRoom.swift; sourceTree = "<group>"; };
 		EB3D7F5A2832656000FBD3FA /* AddEscapeRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEscapeRoomViewModel.swift; sourceTree = "<group>"; };
 		EB67D2C92790E4EB00D70158 /* EscapeRoomValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EscapeRoomValues.swift; sourceTree = "<group>"; };
 		EB76B85E2836B9C0008A1167 /* FeaturedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedView.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				EB15E85227EA30FD00D0E982 /* FiltersView.swift */,
 				EB9ED53727F70F8800089FC5 /* AdjustmentsView.swift */,
+				EB2AABC22843600E00A564A9 /* NewEscapeRoom.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				EB67D2CA2790E4EB00D70158 /* EscapeRoomValues.swift in Sources */,
 				EB9542E827F318480083A1ED /* ValuationView.swift in Sources */,
 				EB9ED52A27F4725D00089FC5 /* Filters.swift in Sources */,
+				EB2AABC32843600E00A564A9 /* NewEscapeRoom.swift in Sources */,
 				EBD04229276ABFA900DFCC40 /* ContentView.swift in Sources */,
 				EB15E85327EA30FD00D0E982 /* FiltersView.swift in Sources */,
 				EBB285CF27E9F41700D1241D /* RatingView.swift in Sources */,
