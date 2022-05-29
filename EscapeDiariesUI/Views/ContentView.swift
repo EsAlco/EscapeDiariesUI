@@ -55,7 +55,7 @@ struct ContentView: View {
         
         return NavigationView{
             ZStack{
-                Image("EscapeDiariesUI")
+                Image(redTheme == 0.338 ? "EscapeDiariesUIMint" : redTheme == 0.986 ? "EscapeDiariesUIPink" : "EscapeDiariesUIYellow")
                         .resizable()
                         .scaledToFit()
                         .opacity(0.2)

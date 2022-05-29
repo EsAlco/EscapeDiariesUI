@@ -105,6 +105,7 @@ struct DetailViewEscapeRoom: View {
                                 .foregroundColor(Color(red: red, green: green, blue: blue))
                                 .multilineTextAlignment(.center)
                                 .minimumScaleFactor(0.5)
+                                
                         }
                         
                         ToolbarItem(placement: .navigationBarTrailing) {
