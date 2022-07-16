@@ -2,7 +2,7 @@
 
 ![Portada](https://raw.githubusercontent.com/EsAlco/EsAlco/master/PortadaEscapeDiaries.png)
 
-EscapeDiaries es una app para iOS que se ha desarrollado con el fin de poder llevar un registro de todas las salas de Escape Room que se han realizado y las que se quieren realizar por parte de un escapista.
+  EscapeDiaries es una app para iOS que se ha desarrollado con el fin de poder llevar un registro de todas las salas de Escape Room que se han realizado y las que se quieren realizar por parte de un escapista.
 
 
 ## Requisitos minimos
@@ -14,10 +14,10 @@ EscapeDiaries es una app para iOS que se ha desarrollado con el fin de poder lle
 
 ## Como usar
 
-Cuando abras la la app comienza creando tu primer registro con el botón [![plus](https://img.shields.io/badge/+-green?)]()
+  Cuando abras la la app comienza creando tu primer registro con el botón [![plus](https://img.shields.io/badge/+-green?)]()
 
 ## Pull Request al proyecto
 
 * Se aceptan PR de código sobre el proyecto
 
-> Esta app se creo con la idea de aprender y evolucionar en el desarrollo de app con SwiftUI. Por ello creo que es veneficioso la contribución al proyecto de otros desarrolladores.
+>   Esta app se creo con la idea de aprender y evolucionar en el desarrollo de app con SwiftUI. Por ello creo que es veneficioso la contribución al proyecto de otros desarrolladores.
