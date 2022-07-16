@@ -1,6 +1,6 @@
 # 🕵️‍♀️ 🕵️ EscapeDiariesUI!
 
-![Portada](https://raw.githubusercontent.com/EsAlco/EscapeDiariesUI/master/assets/PortadaEscapeDiaries.png)
+![Portada](https://raw.githubusercontent.com/EsAlco/EscapeDiariesUI/master/Resources/Assets/PortadaEscapeDiaries.png)
 
 EscapeDiaries es una app para iOS que se ha desarrollado con el fin de poder llevar un registro de todas las salas de Escape Room que se han realizado y las que se quieren realizar por parte de un escapista.
 
