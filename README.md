@@ -14,12 +14,10 @@ EscapeDiaries es una app para iOS que se ha desarrollado con el fin de poder lle
 
 ## Como usar
 
-Cuando abras la 
+Cuando abras la la app comienza creando tu primer registro con el botón [![plus](https://img.shields.io/badge/+-green?&labelColor=101010)]()
 
 ## Pull Request al proyecto
 
 * Se aceptan PR de código sobre el proyecto
 
 > Esta app se creo con la idea de aprender y evolucionar en el desarrollo de app con SwiftUI. Por ello creo que es veneficioso la contribución al proyecto de otros desarrolladores.
-
-## Licencia
