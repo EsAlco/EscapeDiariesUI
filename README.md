@@ -15,10 +15,11 @@
 
 ## Como usar
 
-  Cuando abras la la app comienza creando tu primer registro con el botón [![plus](https://img.shields.io/badge/+-green?)](). Rellena los campos y guarda. Habras realizado tu primer registro. Aparecera una lista en la pantalla principal con todos los registros. Pulsando en cada registro podrás modificar los datos y añadir nuevos, como un 
+  Cuando abras la la app comienza creando tu primer registro con el botón [![plus](https://img.shields.io/badge/+-green?)](). Rellena los campos y guarda. Habras realizado tu primer registro. Aparecera una lista en la pantalla principal con todos los registros. Pulsando en cada registro podrás modificar los datos y añadir nuevos, como añadir puntuación dependiendo de tu experiencia, marcar en que hecha lo hiciste y si es tu favorito o no.
+  
 
 ## Pull Request al proyecto
 
 * Se aceptan PR de código sobre el proyecto
 
->   Esta app se creo con la idea de aprender y evolucionar en el desarrollo de app con SwiftUI. Por ello creo que es veneficioso la contribución al proyecto de otros desarrolladores.
+>   Esta app se creo con la idea de aprender y evolucionar en el desarrollo de app con SwiftUI. Por ello creo que es beneficioso la contribución al proyecto de otros desarrolladores.
